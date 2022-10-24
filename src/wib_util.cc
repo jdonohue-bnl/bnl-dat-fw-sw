@@ -21,14 +21,15 @@ uint32_t peek(size_t addr) {
 
     int fd = open("/dev/mem",O_RDWR|O_SYNC);	
 	
-	void *ptr = mmap(NULL,sysconf(_SC_PAGESIZE),PROT_READ|PROT_WRITE,MAP_SHARED,fd,(addr & ~(sysconf(_SC_PAGESIZE)-1)));
-	if (ptr == MAP_FAILED) return -1; //otherwise mmap will segfault
+	void *ptr = mmap(NULL,sysconf(_SC_PAGESIZE),PROT_READ|PROT_WRITE,MAP_SHARED,fd, page_addr);
+    close(fd);
+	if (ptr == MAP_FAILED) 
+        return -1; //otherwise mmap will segfault
 	
 	uint32_t val = *((uint32_t*)((char*)ptr+page_offset));
     munmap(ptr,sysconf(_SC_PAGESIZE));
-    close(fd);
 	
-//	printf("Register 0x%016X was read as 0x%08X\n",addr,val);
+	//printf("Register 0x%016X was read as 0x%08X\n",addr,val);
 
 	return val;
 }
@@ -38,7 +39,7 @@ void poke(size_t addr, uint32_t val) {
     size_t page_offset = addr-page_addr;
 
     int fd = open("/dev/mem",O_RDWR);
-    void *ptr = mmap(NULL,sysconf(_SC_PAGESIZE),PROT_READ|PROT_WRITE,MAP_SHARED,fd,(addr & ~(sysconf(_SC_PAGESIZE)-1)));
+    void *ptr = mmap(NULL,sysconf(_SC_PAGESIZE),PROT_READ|PROT_WRITE,MAP_SHARED,fd, page_addr);
 	close(fd);//"After mmap() call has returned, fd can be closed immediately without invalidating the mapping.
 	
 	if (ptr == MAP_FAILED) return;
