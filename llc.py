@@ -23,6 +23,33 @@ class LLC():
         self.wib.bufread.argtypes = [ctypes.POINTER(ctypes.c_char), ctypes.c_size_t]
         self.wib.bufread.restype = None
 
+        self.wib.i2cread.argtypes = [ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8]
+        self.wib.i2cread.restype = ctypes.c_uint8
+    
+        self.wib.i2cwrite.argtypes = [ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8]
+        self.wib.i2cwrite.restype = None
+
+        self.wib.read_ltc2990.argtypes = [ctypes.c_uint8, ctypes.c_bool, ctypes.c_uint8]
+        self.wib.read_ltc2990.restype = ctypes.c_double
+    
+        self.wib.read_ltc2991.argtypes = [ctypes.c_uint8, ctypes.c_uint8, ctypes.c_bool, ctypes.c_uint8]
+        self.wib.read_ltc2991.restype = ctypes.c_double    
+    
+        self.wib.read_ad7414.argtypes = [ctypes.c_uint8]
+        self.wib.read_ad7414.restype = ctypes.c_double
+    
+        self.wib.read_ltc2499.argtypes = [ctypes.c_uint8]
+        self.wib.read_ltc2499.restype = ctypes.c_double        
+
+        self.wib.femb_power_reg_ctrl.argtypes = [ctypes.c_uint8, ctypes.c_uint8, ctypes.c_double]
+        self.wib.femb_power_reg_ctrl.restype = ctypes.c_bool
+    
+        self.wib.femb_power_en_ctrl = [ctypes.c_int, ctypes.c_uint8]
+        self.wib.femb_power_en_ctrl = ctypes.c_bool
+    
+        self.wib.femb_power_config.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double ]
+        self.wib.femb_power_config.restype = ctypes.c_bool       
+
     def peek(self, regaddr):
         val = self.wib.peek(regaddr)
         return val
@@ -120,4 +147,7 @@ class LLC():
                 print('memmove failed')
                 exit()
         return buf0_bytes, buf1_bytes
+
+    def femb_power_en_ctrl(femb_id=0, enable=0):
+        self.wib.femb_power_en_ctrl(femb_id, enable)
         
