@@ -96,11 +96,14 @@ extern "C" {
 	uint32_t peek(size_t addr);
 	void poke(size_t addr, uint32_t value);
 
+	uint32_t wib_peek(size_t addr);
+	void wib_poke(size_t addr, uint32_t value);
+
     uint8_t cdpeek(uint8_t femb_idx,  uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr);
 	
     void cdpoke(uint8_t femb_idx, uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr, uint8_t data);
 	
-	int i2cread(uint8_t bus, uint8_t chip, uint8_t reg);
+	uint8_t i2cread(uint8_t bus, uint8_t chip, uint8_t reg);
 	void i2cwrite(uint8_t bus, uint8_t chip, uint8_t reg, uint8_t data);
 	void i2cselect(uint8_t device);	
 	
@@ -111,4 +114,9 @@ extern "C" {
 	double read_ltc2991(uint8_t bus, uint8_t slave, bool differential, uint8_t ch);
 	double read_ad7414(uint8_t slave);
 	double read_ltc2499(uint8_t ch);
+
+    bool femb_power_reg_ctrl(uint8_t femb_id, uint8_t regulator_id, double voltage);
+    bool femb_power_config(uint8_t femb_id, double dc2dc_o1, double dc2dc_o2, double dc2dc_o3, double dc2dc_o4 ); //, double ldo_a0, double ldo_a1);
+    bool all_femb_bias_ctrl(bool bias   );
+    bool femb_power_en_ctrl(int femb_id, uint8_t dc2dco1, uint8_t dc2dco2, uint8_t dc2dco3, uint8_t dc2dco4, uint8_t bias  );
 } 

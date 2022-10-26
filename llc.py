@@ -13,7 +13,13 @@ class LLC():
         
         self.wib.poke.argtypes = [ctypes.c_size_t, ctypes.c_uint32]
         self.wib.poke.restype = None
-       
+
+        self.wib.wib_peek.argtypes = [ctypes.c_size_t]
+        self.wib.wib_peek.restype = ctypes.c_uint32
+        
+        self.wib.wib_poke.argtypes = [ctypes.c_size_t, ctypes.c_uint32]
+        self.wib.wib_poke.restype = None
+      
         self.wib.cdpeek.argtypes = [ctypes.c_uint8,  ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8]
         self.wib.cdpeek.restype = ctypes.c_uint8
         
@@ -41,13 +47,16 @@ class LLC():
         self.wib.read_ltc2499.argtypes = [ctypes.c_uint8]
         self.wib.read_ltc2499.restype = ctypes.c_double        
 
+        self.wib.all_femb_bias_ctrl.argtypes = [ctypes.c_uint8 ]
+        self.wib.all_femb_bias_ctrl.restype  = ctypes.c_bool
+
+        self.wib.femb_power_en_ctrl.argtypes = [ctypes.c_int, ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8, ctypes.c_uint8]
+        self.wib.femb_power_en_ctrl.restype  = ctypes.c_bool
+
         self.wib.femb_power_reg_ctrl.argtypes = [ctypes.c_uint8, ctypes.c_uint8, ctypes.c_double]
         self.wib.femb_power_reg_ctrl.restype = ctypes.c_bool
     
-        self.wib.femb_power_en_ctrl = [ctypes.c_int, ctypes.c_uint8]
-        self.wib.femb_power_en_ctrl = ctypes.c_bool
-    
-        self.wib.femb_power_config.argtypes = [ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double ]
+        self.wib.femb_power_config.argtypes = [ctypes.c_uint8, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double, ctypes.c_double ]
         self.wib.femb_power_config.restype = ctypes.c_bool       
 
     def peek(self, regaddr):
@@ -56,6 +65,14 @@ class LLC():
 
     def poke(self, regaddr, regval):
         self.wib.poke(regaddr, regval)
+        return None
+
+    def wib_peek(self, regaddr):
+        val = self.wib.wib_peek(regaddr)
+        return val
+
+    def wib_poke(self, regaddr, regval):
+        self.wib.wib_poke(regaddr, regval)
         return None
 
 #    def poke_chk(self, regaddr, regval):
@@ -148,6 +165,19 @@ class LLC():
                 exit()
         return buf0_bytes, buf1_bytes
 
-    def femb_power_en_ctrl(femb_id=0, enable=0):
-        self.wib.femb_power_en_ctrl(femb_id, enable)
         
+    def femb_power_config(self, femb_id=0, vfe=3.0, vcd=3.0, vadc=3.5):
+        self.wib.femb_power_config(femb_id, vfe, vcd, vadc, 0, 0, 0 )
+
+    def all_femb_bias_ctrl(self, enable=0):
+        self.wib.all_femb_bias_ctrl(enable )
+
+    def femb_power_en_ctrl(self, femb_id=0, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=0):
+        self.wib.femb_power_en_ctrl(femb_id, vfe_en, vcd_en, vadc_en, 0, bias_en)
+
+
+    def femb_power_set(self, femb_id=0, on=1, vfe=3.0, vcd=3.0, vadc=3.5, allon=1):
+        self.femb_power_config(femb_id, vfe, vcd, vadc)
+        self.all_femb_bias_ctrl(enable=allon)
+        self.femb_power_en_ctrl(femb_id, vfe_en=on, vcd_en=on, vadc_en=on, bias_en=on)
+            

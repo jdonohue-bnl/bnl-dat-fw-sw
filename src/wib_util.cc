@@ -14,6 +14,7 @@ extern "C" {
 #include "wib_util.h"
 #include "wib_i2c.h"
 #include "sensors.h"
+#include "io_reg.h"
 
 #include <linux/i2c-dev.h>
 #include <i2c/smbus.h>
@@ -52,6 +53,26 @@ void poke(size_t addr, uint32_t val) {
     
     munmap(ptr,sysconf(_SC_PAGESIZE));
 //	printf("Register 0x%016X was set to 0x%08X\n",addr,val);
+}
+
+uint32_t wib_peek(size_t addr) {
+    size_t page_addr = (addr & ~(sysconf(_SC_PAGESIZE)-1));
+    size_t page_offset = addr-page_addr;
+    io_reg_t wib_reg;
+	io_reg_init(&wib_reg, page_addr ,0x10000/4);
+    uint32_t val =io_reg_read(&wib_reg, page_offset/4);
+    io_reg_free(&wib_reg);
+	return val;
+}
+
+void wib_poke(size_t addr, uint32_t val) {
+    size_t page_addr = (addr & ~(sysconf(_SC_PAGESIZE)-1));
+    size_t page_offset = addr-page_addr;
+    io_reg_t wib_reg;
+	io_reg_init(&wib_reg, page_addr ,0x10000/4);
+    uint32_t mask = 0xFFFFFFFF;
+    io_reg_write(&wib_reg, page_offset/4, val, mask);
+    io_reg_free(&wib_reg);
 }
 
 uint8_t cdpeek(uint8_t femb_idx, uint8_t chip_addr, uint8_t reg_page, uint8_t reg_addr) {
@@ -119,7 +140,7 @@ void bufread(char* dest, size_t buf_num) {
 	munmap(daq_spy,DAQ_SPY_SIZE); 
 }
 
-int i2cread(uint8_t bus, uint8_t chip, uint8_t reg) {
+uint8_t i2cread(uint8_t bus, uint8_t chip, uint8_t reg) {
 	i2c_t i2c_bus;
 	bool fail;
 	if (bus == 0) fail = i2c_init(&i2c_bus, (char*)"/dev/i2c-0"); //sel
@@ -130,7 +151,7 @@ int i2cread(uint8_t bus, uint8_t chip, uint8_t reg) {
 	}
 	if (fail) printf("i2c_init failed\n");	
 	
-	int val;	
+	uint8_t val;	
 	for(int tries=0; tries<10; tries++) {
 		val = i2c_reg_read(&i2c_bus, chip, reg);
 		if (val >= 0) break;
@@ -160,13 +181,15 @@ void i2cwrite(uint8_t bus, uint8_t chip, uint8_t reg, uint8_t data) {
 	i2c_free(&i2c_bus);
 	//For some reason WIB::~WIB() doesn't free pwr i2c bus, I assume this is intentional	
 	
-	
 }
 
 void i2cselect(uint8_t device) {
-    uint32_t next = peek(REG_FW_CTRL);
+    uint32_t regaddr = 0xa00c0004;
+    uint32_t next = peek(regaddr);
     next = (next & 0xFFFFFFF0) | (device & 0xF);
-    poke(REG_FW_CTRL,next);
+    poke(regaddr, next);
+    //next = peek(regaddr);
+    //printf ("reg=%08x, val=%08x\n",regaddr , next);
 }
 
 double read_ltc2990(uint8_t slave, bool differential, uint8_t ch) {	
@@ -246,6 +269,7 @@ bool femb_power_reg_ctrl(uint8_t femb_id, uint8_t regulator_id, double voltage) 
         case 2:
         case 3:
             i2cselect(I2C_PL_FEMB_PWR2);   // SET I2C mux to 0x06 for FEMB DC2DC DAC access
+	        usleep(10000);
             DAC_value   = (uint32_t) ((voltage * -482.47267) + 2407.15);
             reg         = (uint8_t) (0x10 | ((regulator_id & 0x0f) << 1));
             buffer[0]   = (uint8_t) (DAC_value >> 4) & 0xff;
@@ -293,25 +317,37 @@ bool femb_power_reg_ctrl(uint8_t femb_id, uint8_t regulator_id, double voltage) 
     return true;
 }
 
+bool femb_power_config(uint8_t femb_id, double dc2dc_o1, double dc2dc_o2, double dc2dc_o3, double dc2dc_o4 ) { //, double ldo_a0, double ldo_a1) {
+	bool success = true;
+    success &= femb_power_reg_ctrl(femb_id, 0, dc2dc_o1); //dc2dc_O1
+    success &= femb_power_reg_ctrl(femb_id, 1, dc2dc_o2); //dc2dc_O2
+    success &= femb_power_reg_ctrl(femb_id, 2, dc2dc_o3); //dc2dc_O2
+    success &= femb_power_reg_ctrl(femb_id, 3, dc2dc_o4); //dc2dc_O2
+    //success &= femb_power_reg_ctrl(femb_id, 4, ldo_a0); //ldo_A0
+    //success &= femb_power_reg_ctrl(femb_id, 5, ldo_a1); //ldo_A1
+    return success;
+}
 
-bool femb_power_en_ctrl(int femb_idx, uint8_t port_en) {
-    //PWR_BIAS_EN enabled if any FEMB regulator is ON
+bool all_femb_bias_ctrl(bool bias   ) {
     uint8_t bus = 2;
+    i2cwrite(bus, 0x23, 0xC, 0);
+    i2cwrite(bus, 0x23, 0xD, 0);
+    i2cwrite(bus, 0x23, 0xE, 0);
+    i2cwrite(bus, 0x22, 0xC, 0);
+    i2cwrite(bus, 0x22, 0xD, 0);
+    i2cwrite(bus, 0x22, 0xE, 0);
+    if (bias) { i2cwrite(bus, 0x22, 0x5, 0x1); }
+    else {i2cwrite(bus, 0x22, 0x5, 0x0);}
+    return true;
+}
 
-    if (port_en != 0x0) {//if (port_en != 0x0 || frontend_power[0] || frontend_power[1] || frontend_power[2] || frontend_power[3]) {
-        if (i2cread(bus, 0x22, 0x5) != 0x1) {
-            i2cwrite(bus, 0x22, 0x5, 0x1);
-            usleep(100000);
-        }
-    } else {
-        if (i2cread(bus, 0x22, 0x5) != 0x0) {
-            i2cwrite(bus, 0x22, 0x5, 0x0);
-            usleep(100000);
-        }
-    }
+bool femb_power_en_ctrl(int femb_id, uint8_t dc2dco1, uint8_t dc2dco2, uint8_t dc2dco3, uint8_t dc2dco4, uint8_t bias  ) {
+    uint8_t bus = 2;
+    uint8_t reg_val;
+    reg_val = (dc2dco1&0x01) + ((dc2dco2&0x01)<<1) + ((dc2dco3&0x01)<<2) + ((dc2dco4&0x01)<<3) + ((bias&0x01)<<6);
     uint8_t i2c_addr;
     uint8_t i2c_reg;
-    switch (femb_idx) {
+    switch (femb_id) {
         case 0:
             i2c_addr = 0x23;
             i2c_reg = 0x4;
@@ -331,32 +367,13 @@ bool femb_power_en_ctrl(int femb_idx, uint8_t port_en) {
         default:
             return false;
     }
-    i2cwrite(bus, i2c_addr, i2c_reg, port_en);
+    i2cwrite(bus, i2c_addr, i2c_reg, reg_val);
+	int rd_val;	
+    rd_val = i2cread(bus, i2c_addr, i2c_reg);
     usleep(100000);
-    return true;
-}
-
-bool femb_power_config(double dc2dc_o1, double dc2dc_o2, double dc2dc_o3, double dc2dc_o4, double ldo_a0, double ldo_a1) {
-	bool success = true;
-    for (int i = 0; i <= 3; i++) {
-        success &= femb_power_reg_ctrl(i, 0, dc2dc_o1); //dc2dc_O1
-        success &= femb_power_reg_ctrl(i, 1, dc2dc_o2); //dc2dc_O2
-        success &= femb_power_reg_ctrl(i, 2, dc2dc_o3); //dc2dc_O2
-        success &= femb_power_reg_ctrl(i, 3, dc2dc_o4); //dc2dc_O2
-        success &= femb_power_reg_ctrl(i, 4, ldo_a0); //ldo_A0
-        success &= femb_power_reg_ctrl(i, 5, ldo_a1); //ldo_A1
-    }
-
-    // configure all pins as outputs for regulator enablers
-    uint8_t bus = 2;
-    i2cwrite(bus, 0x23, 0xC, 0);
-    i2cwrite(bus, 0x23, 0xD, 0);
-    i2cwrite(bus, 0x23, 0xE, 0);
-    i2cwrite(bus, 0x22, 0xC, 0);
-    i2cwrite(bus, 0x22, 0xD, 0);
-    i2cwrite(bus, 0x22, 0xE, 0);
-
-    return success;
+    printf ("%x, %x\n", reg_val, rd_val);
+    if (rd_val != reg_val) {return false;}
+    else {return true;}
 }
 
 
