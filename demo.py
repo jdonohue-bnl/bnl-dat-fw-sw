@@ -27,5 +27,12 @@ reg_read = chk.wib_peek(0xA00C0004)
 print (hex(reg_read))
 
 #chk.femb_power_en_ctrl(femb_id=2, enable=1)
-#chk.femb_power_set(0,1)
+chk.femb_power_set(0,0, 2.5, 3.0, 3.5)
+time.sleep(5)
+chk.femb_power_set(1,0, 2.5, 3.0, 3.5)
+time.sleep(5)
+chk.femb_power_set(2,0, 2.5, 3.0, 3.5)
+time.sleep(5)
+chk.femb_power_set(3,0, 2.5, 3.0, 3.5)
+time.sleep(5)
 
