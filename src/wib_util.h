@@ -23,9 +23,6 @@ extern "C" {
 	constexpr size_t DAQ_SPY_0              = 0xA0100000;
 	constexpr size_t DAQ_SPY_1              = 0xA0200000;
 
-	//Size of a DAQ spy buffer
-	constexpr size_t DAQ_SPY_SIZE           = 0x00100000;
-
 	//32bit register index in CTRL_REGS
 	constexpr size_t REG_TIMING             = 0x0000/4;
 	constexpr size_t REG_FW_CTRL            = 0x0004/4;
@@ -40,6 +37,9 @@ extern "C" {
 	constexpr size_t REG_FW_TIMESTAMP       = 0x0088/4;
 	constexpr size_t REG_BACKPLANE_ADDR     = 0x008C/4;
 	constexpr size_t REG_ENDPOINT_STATUS    = 0x0090/4;
+
+	//Size of a DAQ spy buffer
+	constexpr size_t DAQ_SPY_SIZE           = 0x00100000;
 
 	////////////FROM FEMB_3ASIC.H:
 
