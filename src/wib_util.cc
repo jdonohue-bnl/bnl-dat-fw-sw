@@ -197,8 +197,8 @@ double read_ltc2990(uint8_t slave, bool differential, uint8_t ch) {
 	i2c_init(&i2c_bus, (char*)"/dev/i2c-0");
 	i2cselect(I2C_SENSOR);
 	
-	uint8_t buf[1] = {0x7};
-	i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
+	//uint8_t buf[1] = {0x7};
+	//i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
 	
 	enable_ltc2990(&i2c_bus, slave, differential);//enable and trigger
 	double voltage = 0.00030518*read_ltc2990_value(&i2c_bus,slave,ch);
@@ -228,8 +228,8 @@ double read_ad7414(uint8_t slave) {
 	i2c_init(&i2c_bus, (char*)"/dev/i2c-0");
 	i2cselect(I2C_SENSOR);
 
-	uint8_t buf[1] = {0x7};
-	i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
+	//uint8_t buf[1] = {0x7};
+	//i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
 
 	double temp = read_ad7414_temp(&i2c_bus, slave);
 	
@@ -237,18 +237,40 @@ double read_ad7414(uint8_t slave) {
 	return temp;
 }
 
+double read_ina226_c(uint8_t slave) {
+	i2c_t i2c_bus;
+	i2c_init(&i2c_bus, (char*)"/dev/i2c-0");
+	i2cselect(I2C_SENSOR);
+
+	double val= read_ina226_vshunt(&i2c_bus, slave);
+    val = val*(2.5e-6)/0.005;
+	i2c_free(&i2c_bus);
+	return val;
+}
+
+double read_ina226_v(uint8_t slave) {
+	i2c_t i2c_bus;
+	i2c_init(&i2c_bus, (char*)"/dev/i2c-0");
+	i2cselect(I2C_SENSOR);
+
+	double val= read_ina226_vbus(&i2c_bus, slave);
+    val=val*1.25/1000;
+	
+	i2c_free(&i2c_bus);
+	return val;
+}
+
 double read_ltc2499(uint8_t ch) {
 	i2c_t i2c_bus;
 	i2c_init(&i2c_bus, (char*)"/dev/i2c-0");
 	i2cselect(I2C_SENSOR);
 
-	uint8_t buf[1] = {0x7};
-	i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
-
+	//uint8_t buf[1] = {0x7};
+	//i2c_write(&i2c_bus,0x70,buf,1);	 // enable i2c repeater
 	start_ltc2499_temp(&i2c_bus, ch);
 	usleep(175000);
 	double temp = read_ltc2499_temp(&i2c_bus, ch+1);
-	//usleep(175000);
+	usleep(175000);
 	
 	i2c_free(&i2c_bus);
 	return temp;	

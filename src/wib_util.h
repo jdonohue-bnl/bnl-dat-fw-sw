@@ -114,9 +114,14 @@ extern "C" {
 	double read_ltc2991(uint8_t bus, uint8_t slave, bool differential, uint8_t ch);
 	double read_ad7414(uint8_t slave);
 	double read_ltc2499(uint8_t ch);
+    double read_ina226_c(uint8_t slave);
+    double read_ina226_v(uint8_t slave);
 
     bool femb_power_reg_ctrl(uint8_t femb_id, uint8_t regulator_id, double voltage);
     bool femb_power_config(uint8_t femb_id, double dc2dc_o1, double dc2dc_o2, double dc2dc_o3, double dc2dc_o4 ); //, double ldo_a0, double ldo_a1);
     bool all_femb_bias_ctrl(bool bias   );
     bool femb_power_en_ctrl(int femb_id, uint8_t dc2dco1, uint8_t dc2dco2, uint8_t dc2dco3, uint8_t dc2dco4, uint8_t bias  );
+
+	bool script_cmd(char* line);
+	bool script(char* script, bool file=true);
 } 

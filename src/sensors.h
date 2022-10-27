@@ -10,6 +10,9 @@ double read_ltc2499_temp(i2c_t *i2c, uint8_t ch);
 
 double read_ad7414_temp(i2c_t *i2c, uint8_t slave);
 
+double read_ina226_vbus(i2c_t *i2c, uint8_t slave);
+double read_ina226_vshunt(i2c_t *i2c, uint8_t slave);
+
 void enable_ltc2990(i2c_t *i2c, uint8_t slave, bool differential = false);
 
 //ch 1 to ch 4, Vcc

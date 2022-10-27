@@ -128,9 +128,9 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
         print ("Power configuration measurement is not ready yet...")
         return None
 
-    def get_sensors(self):
-        print ("Power configuration measurement is not ready yet...")
-        return None
+#    def get_sensors(self):
+        #print ("Power configuration measurement is not ready yet...")
+        #return None
 
     def en_ref10MHz(self, ref_en = False):
         if ref_en:

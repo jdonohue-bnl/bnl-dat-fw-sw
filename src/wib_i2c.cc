@@ -99,7 +99,7 @@ int i2c_read(i2c_t *i2c, uint8_t slave, uint8_t *buf, size_t len) {
     i2c_rdwr_ioctl_data ioctl_data = { &message, 1 };
     int res = ioctl(i2c->fd, I2C_RDWR, &ioctl_data);
     if (res == -1) {
-        printf("i2c_read failed %s\n",strerror(errno));
+        printf("i2c_read failed %s, slave=%x \n",strerror(errno), slave);
     }
     return res;
 }
@@ -110,7 +110,7 @@ int i2c_write(i2c_t *i2c, uint8_t slave, uint8_t *buf, size_t len) {
     i2c_rdwr_ioctl_data ioctl_data = { &message, 1 };
     int res = ioctl(i2c->fd, I2C_RDWR, &ioctl_data);
     if (res == -1) {
-       printf("i2c_write failed %s\n",strerror(errno));
+       printf("i2c_write failed %s, slave=%x\n",strerror(errno), slave);
     }
     return res;
 }
