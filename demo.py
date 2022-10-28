@@ -27,15 +27,24 @@ chk = WIB_CFGS()
 #print (hex(reg_read))
 #
 ##chk.femb_power_en_ctrl(femb_id=2, enable=1)
-chk.femb_power_set(0,1, 2.5, 3.0, 3.5)
-time.sleep(1)
-chk.femb_power_set(1,1, 2.5, 3.0, 3.5)
-time.sleep(1)
-chk.femb_power_set(2,1, 2.5, 3.0, 3.5)
-time.sleep(1)
-chk.femb_power_set(3,1, 2.5, 3.0, 3.5)
-time.sleep(2)
+#chk.femb_power_set(0,1, 2.5, 3.0, 3.5)
+#time.sleep(1)
+#chk.femb_power_set(1,1, 2.5, 3.0, 3.5)
+#time.sleep(1)
+#chk.femb_power_set(2,1, 2.5, 3.0, 3.5)
+#time.sleep(1)
+#chk.femb_power_set(3,1, 2.5, 3.0, 3.5)
+#time.sleep(2)
 
+
+chk.script (fp = "./coldata_power_on")
 a = chk.get_sensors()
+print (a)
+time.sleep(3)
+
+chk.script (fp = "./coldata_power_off")
+time.sleep(3)
+a = chk.get_sensors()
+
 print (a)
 

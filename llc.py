@@ -70,9 +70,11 @@ class LLC():
         self.wib.script.argtypes =  [ctypes.POINTER(ctypes.c_char), ctypes.c_bool  ] 
         self.wib.script.restype = ctypes.c_bool       
 
-    def script_cmd(self)
+    def script_cmd(self, cmd):
+        return self.wib.script_cmd(cmd)
 
-    def script(self)
+    def script(self, fp, fp_flg=True): #false means argument is a raw script line
+        return self.wib.script(fp, fp_flg)
 
     def peek(self, regaddr):
         val = self.wib.peek(regaddr)
@@ -310,9 +312,8 @@ class LLC():
         power_meas["FEMB3_DC2DC3_V"] =  bus2_ltc2991_4b_vs[7]
         power_meas["FEMB3_DC2DC3_I"] = (bus2_ltc2991_4b_vs[6] - bus2_ltc2991_4b_vs[7])/0.1
 
-        for key in power_meas:
-            print (key, ":", power_meas[key])
- 
+#        for key in power_meas:
+#            print (key, ":", power_meas[key])
         return power_meas
 
 
@@ -322,7 +323,7 @@ class LLC():
     def all_femb_bias_ctrl(self, enable=0):
         self.wib.all_femb_bias_ctrl(enable )
 
-    def femb_power_en_ctrl(self, femb_id=0, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=0):
+    def femb_power_en_ctrl(self, femb_id=0, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=1):
         self.wib.femb_power_en_ctrl(femb_id, vfe_en, vcd_en, vadc_en, 0, bias_en)
 
 
