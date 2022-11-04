@@ -231,6 +231,52 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
             time.sleep(1)
             self.all_femb_bias_ctrl(enable=0 )
 
+    def femb_powering_script(self, fembs = []):
+        print (f"FEMB powering...")
+        if 0 in fembs:
+            femb0 = True
+        else:
+            femb0 = False
+        if 1 in fembs:
+            femb1 = True
+        else:
+            femb1 = False
+        if 2 in fembs:
+            femb2 = True
+        else:
+            femb2 = False
+        if 3 in fembs:
+            femb3 = True
+        else:
+            femb3 = False
+        if (femb0 | femb1 | femb2 | femb3 ):
+            self.script_fp (fp = B'scripts/bias_on')
+        else:
+            self.script_fp (fp = B'scripts/bias_off')
+        time.sleep(1)
+        if femb0 == True:
+            self.script_fp (fp = B'scripts/femb0_on')
+        else:
+            self.script_fp (fp = B'scripts/femb0_off')
+        time.sleep(1)
+        if femb1 == True:
+            self.script_fp (fp = B'scripts/femb1_on')
+        else:
+            self.script_fp (fp = B'scripts/femb1_off')
+        time.sleep(1)
+        if femb2 == True:
+            self.script_fp (fp = B'scripts/femb2_on')
+        else:
+            self.script_fp (fp = B'scripts/femb2_off')
+        time.sleep(1)
+        if femb3 == True:
+            self.script_fp (fp = B'scripts/femb3_on')
+        else:
+            self.script_fp (fp = B'scripts/femb3_off')
+        print ("Wait 5 seconds")
+        time.sleep(1)
+
+
 #    def get_sensors(self):
         #print ("Power configuration measurement is not ready yet...")
         #return None
