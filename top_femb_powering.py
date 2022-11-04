@@ -26,6 +26,7 @@ if 'on' in sys.argv[4]:
 
 chk = WIB_CFGS()
 
+chk.wib_rst_tp()
 chk.wib_fw()
 ####################FEMBs powering################################
 #set FEMB voltages
