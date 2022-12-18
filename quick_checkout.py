@@ -181,7 +181,8 @@ t1 = time.time()
 chk = WIB_CFGS()
 chk.wib_rst_tp()
 chk.wib_fw()
-chk.wib_timing(pll=True, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
+chk.wib_timing(ts_clk_sel=True, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
+time.sleep(1)
 
 #set FEMB voltages
 chk.fembs_vol_set(vfe=3.0, vcd=3.0, vadc=3.5)

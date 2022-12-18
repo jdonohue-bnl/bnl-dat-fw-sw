@@ -30,7 +30,10 @@ chk = WIB_CFGS()
 ####################WIB init################################
 #check if WIB is in position
 chk.wib_fw()
-chk.wib_timing(pll=False, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
+time.sleep(1)
+chk.wib_timing(ts_clk_sel=False, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
+time.sleep(1)
+chk.wib_timing(ts_clk_sel=False, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
 time.sleep(1)
 
 ####################FEMBs Configuration################################

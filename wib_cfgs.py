@@ -120,23 +120,24 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
         rdreg = self.peek(0xA0030004)
         #print ("edge_to_act_delay = 0x%08x"%rdreg)
 
-        #reset COLDATA RX to clear buffers
-        rdreg = self.peek(0xA00C0004)
-        #print ("coldata_rx_reset = 0x%08x"%rdreg)
-        self.poke(0xA00C0004, rdreg&0xffffdfff)
-        self.poke(0xA00C0004, rdreg|0x00002000)
-        self.poke(0xA00C0004, rdreg&0xffffdfff)
-        rdreg = self.peek(0xA00C0004)
-        #print ("coldata_rx_reset = 0x%08x"%rdreg)
+        for x in range(2):
+            #reset COLDATA RX to clear buffers
+            rdreg = self.peek(0xA00C0004)
+            #print ("coldata_rx_reset = 0x%08x"%rdreg)
+            self.poke(0xA00C0004, rdreg&0xffffdfff)
+            self.poke(0xA00C0004, rdreg|0x00002000)
+            self.poke(0xA00C0004, rdreg&0xffffdfff)
+            rdreg = self.peek(0xA00C0004)
+            #print ("coldata_rx_reset = 0x%08x"%rdreg)
 
-        #reset FELIX TX and loopback RX
-        rdreg = self.peek(0xA00C0038)
-        #print ("felix_rx_reset = 0x%08x"%rdreg)
-        self.poke(0xA00C0038, rdreg&0xffffffdf)
-        self.poke(0xA00C0038, rdreg|0x00000020)
-        self.poke(0xA00C0038, rdreg&0xffffffdf)
-        rdreg = self.peek(0xA00C0038)
-        #print ("felix_rx_reset = 0x%08x"%rdreg)
+            #reset FELIX TX and loopback RX
+            rdreg = self.peek(0xA00C0038)
+            #print ("felix_rx_reset = 0x%08x"%rdreg)
+            self.poke(0xA00C0038, rdreg&0xffffffdf)
+            self.poke(0xA00C0038, rdreg|0x00000020)
+            self.poke(0xA00C0038, rdreg&0xffffffdf)
+            rdreg = self.peek(0xA00C0038)
+            #print ("felix_rx_reset = 0x%08x"%rdreg)
 
         return self.peek(0xA00C0004)
 
