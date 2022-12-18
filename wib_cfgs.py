@@ -698,33 +698,34 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
                 wrreg = (rdreg&0xffffff3f)|0x00
                 self.poke(0xA00C0004, wrreg) #release spy buffer
                 
-                self.poke(0xA00C0024, trigger_rec_ticks) #spy rec time
+                self.poke(0xA00C0024, spy_rec_ticks) #spy rec time
                 rdreg = self.peek(0xA00C0014)
-                wrreg = (rdreg&0xff00ffff)|(trigger_command<<16)|0x40000000
+                wrreg = (rdreg&0xff00ffff)|(trig_cmd<<16)|0x40000000
                 self.poke(0xA00C0014, wrreg) #program cmd_code_trigger
 
                 while True:
                     spy_full_flgs = False
                     rdreg = self.peek(0xA00C0080)
                     if rdreg&0x03 == 0x03:
+                        print ("Recived %d of %d triggers"%((i+1), num_samples))
                         spy_full_flgs = True
                         buf0_end_addr = self.peek(0xA00C0094)
                         buf1_end_addr = self.peek(0xA00C0098)
-                        if buf0_end_addr == buf1_end_addr:
+                        if (abs(buf0_end_addr - buf1_end_addr)<32) or (abs(buf1_end_addr - buf0_end_addr)<32):
                             spy_full_flgs = True
+                            rawdata = self.spybuf(fembs)
+                            data0 = (rawdata, buf0_end_addr, spy_rec_ticks, trig_cmd)
+                            data.append(data0)
                         else:
-                            spy_full_flgs = False
-                        rawdata = self.spybuf(fembs)
-                        data0 = (rawdata, buf0_end_addr, trigger_rec_ticks, trigger_command)
+                            print ("Two buffers out of synced")
+                            pass
                     else:
                         spy_full_flgs = False
-                        break
                     if spy_full_flgs:
                         break
                     else:
                         print ("No external trigger received, Wait a second ")
                         time.sleep(1)
-                data.append(data0)
         return data
   
 #wib = WIB_CFGS()
