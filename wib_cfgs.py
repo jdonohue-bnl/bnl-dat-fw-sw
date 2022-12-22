@@ -87,7 +87,7 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
             print ("timing point status(addr 0x%08x) = 0x%08x"%(addr, rdreg))
         
             rdreg = self.peek(0xA00c0004)
-            rdreg = rdreg | 0x10000
+            rdreg = rdreg & 0xFFFEFFFF #external clock from DTS is chosen
             if fp1_ptc0_sel == 0:
                 print ("timing master is available through backplane (PTC)")
                 self.poke(0xA00c0004, (rdreg&0xFFFFFFDF)) #backplane
