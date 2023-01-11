@@ -129,6 +129,7 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
             self.poke(0xA00C0004, rdreg&0xffffdfff)
             rdreg = self.peek(0xA00C0004)
             #print ("coldata_rx_reset = 0x%08x"%rdreg)
+            time.sleep(0.1)
 
             #reset FELIX TX and loopback RX
             rdreg = self.peek(0xA00C0038)
@@ -138,6 +139,7 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
             self.poke(0xA00C0038, rdreg&0xffffffdf)
             rdreg = self.peek(0xA00C0038)
             #print ("felix_rx_reset = 0x%08x"%rdreg)
+            time.sleep(0.1)
 
         return self.peek(0xA00C0004)
 
@@ -157,21 +159,45 @@ class WIB_CFGS(LLC, FE_ASIC_REG_MAPPING):
             self.all_femb_bias_ctrl(enable=1 )
             if 0 in fembs: 
                 self.femb_power_en_ctrl(femb_id=0, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=1 )
+                print ("FEMB0 is on")
             else: 
                 self.femb_power_en_ctrl(femb_id=0, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+                print ("FEMB0 is off")
+            time.sleep(2)
             if 1 in fembs: 
                 self.femb_power_en_ctrl(femb_id=1, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=1 )
+                print ("FEMB1 is on")
             else: 
                 self.femb_power_en_ctrl(femb_id=1, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+                print ("FEMB1 is off")
+            time.sleep(2)
             if 2 in fembs: 
                 self.femb_power_en_ctrl(femb_id=2, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=1 )
+                print ("FEMB2 is on")
             else: 
                 self.femb_power_en_ctrl(femb_id=2, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+                print ("FEMB2 is off")
+            time.sleep(2)
             if 3 in fembs: 
                 self.femb_power_en_ctrl(femb_id=3, vfe_en=1, vcd_en=1, vadc_en=1, bias_en=1 )
+                print ("FEMB3 is on")
             else: 
                 self.femb_power_en_ctrl(femb_id=3, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+                print ("FEMB3 is off")
+            time.sleep(2)
         else:
+            self.femb_power_en_ctrl(femb_id=0, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+            print ("FEMB0 is off")
+            time.sleep(2)
+            self.femb_power_en_ctrl(femb_id=1, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+            print ("FEMB1 is off")
+            time.sleep(2)
+            self.femb_power_en_ctrl(femb_id=2, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+            print ("FEMB2 is off")
+            time.sleep(2)
+            self.femb_power_en_ctrl(femb_id=3, vfe_en=0, vcd_en=0, vadc_en=0, bias_en=0 )
+            print ("FEMB3 is off")
+            time.sleep(2)
             self.all_femb_bias_ctrl(enable=0 )
 
 #    def get_sensors(self):
