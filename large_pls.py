@@ -30,13 +30,12 @@ chk = WIB_CFGS()
 ####################WIB init################################
 #check if WIB is in position
 chk.wib_fw()
-time.sleep(1)
+#chk.wib_timing(pll=True, fp1_ptc0_sel=0, cmd_stamp_sync = 0x0)
+#time.sleep(1)
 
 ####################FEMBs Configuration################################
 #step 1
 #reset all FEMBs on WIB
-chk.wib_femb_link_en(fembs)
-
 chk.femb_cd_rst()
 
 cfg_paras_rec = []
@@ -57,11 +56,13 @@ for femb_id in fembs:
                       ]
 
 #LArASIC register configuration
-    chk.set_fe_board(sts=1, snc=0,sg0=0, sg1=0, st0=0, st1=0, swdac=1, sdd=0, sgp=1, dac=0x3f )
+    chk.set_fe_board(sts=1, snc=0,sg0=0, sg1=0, st0=0, st1=0, swdac=0, sdd=0,dac=0x0 ) #CHANGED
     adac_pls_en = 1 #enable LArASIC interal calibraiton pulser
     cfg_paras_rec.append( (femb_id, copy.deepcopy(chk.adcs_paras), copy.deepcopy(chk.regs_int8), adac_pls_en) )
 #step 3
     chk.femb_cfg(femb_id, adac_pls_en )
+
+chk.wib.dat_set_pulse(0x7, 0x2e4, 0x50, 1.0)
 
 chk.data_align(fembs)
 
@@ -71,6 +72,9 @@ time.sleep(0.5)
 rawdata = chk.spybuf_trig(fembs=fembs, num_samples=sample_N, trig_cmd=0) #returns list of size 1
 
 pwr_meas = chk.get_sensors()
+
+#turn dat pulse off
+chk.dat_set_pulse()
 
 if save:
     fdir = "./tmp_data/"
