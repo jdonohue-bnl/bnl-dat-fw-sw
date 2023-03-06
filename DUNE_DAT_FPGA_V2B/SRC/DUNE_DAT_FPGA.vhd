@@ -1112,7 +1112,7 @@ TST_PULSE_GEN_inst : entity work.SBND_TST_PULSE
 		TP_FREQ				=> TP_PERIOD,	 
 		DAC_CNTL				=> DAC_CNTL(11 DOWNTO 0), --not used
 		ASIC_DAC_CNTL		=> ASIC_DAC_CNTL,
-		Test_pulse			=> open
+		Test_pulse			=> Test_pulse
 	);
 
 
