@@ -396,7 +396,7 @@ for select in [0,1,2,3,4,5,6,7]:
         data = dat_monadc_getdata(fe=fe)
         print("FE MonADC:",data*AD_LSB,"V\t",hex(data),"\t",format(data,'b').zfill(12))
 
-dat_set_pulse(0xf, 0x2e4, 0x50, 1.0)
+dat_set_pulse(0xff, 0x2e4, 0x50, 1.0)
 
 
 print("\nSetting FE DAC for TP")

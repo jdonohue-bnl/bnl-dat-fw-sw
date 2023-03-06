@@ -253,9 +253,14 @@ void dat_set_pulse(uint8_t en, uint16_t period, uint16_t width, float amplitude)
 		if (en & 1<<i > 0) dat_set_dac(amplitude, i, -1, -1);
 		else dat_set_dac(0.0, i, -1, -1);
 	}
+	//connect FE_TEST to PLS_FE for en
+	uint8_t fe_cali_cs = cdpeek(0, 0xC, 0, DAT_FE_CALI_CS);
+	cdpoke(0, 0xC, 0, DAT_FE_CALI_CS, fe_cali_cs & en);
+
 	//finally enable pulses
 	cdpoke(0, 0xC, 0, DAT_TEST_PULSE_SOCKET_EN, en);
 	
+
 	if (en > 0) cdpoke(0, 0xC, 0, DAT_TEST_PULSE_EN, 0x7); //turn on FPGA_TP_EN, ASIC_TP_EN, INT_TP_EN
 	else cdpoke(0, 0xC, 0, DAT_TEST_PULSE_EN, 0x0);
 }
