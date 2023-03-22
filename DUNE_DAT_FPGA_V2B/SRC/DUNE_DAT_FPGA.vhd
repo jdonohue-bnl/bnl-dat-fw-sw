@@ -140,7 +140,7 @@ entity DUNE_DAT_FPGA is
 --		FE8_INS_PLS_CS 						: OUT STD_LOGIC;
 		FE_INS_PLS_CS 						: OUT STD_LOGIC_VECTOR(7 downto 0);		
 
-		FE_TEST_INH							: OUT STD_LOGIC; 
+--		FE_TEST_INH							: OUT STD_LOGIC; 
 --		FE1_TEST_INH 						: OUT STD_LOGIC;
 --		FE2_TEST_INH 						: OUT STD_LOGIC;
 --		FE3_TEST_INH 						: OUT STD_LOGIC;
@@ -153,6 +153,11 @@ entity DUNE_DAT_FPGA is
 		FE_TEST_CSA							: OUT STD_LOGIC; 		
 		FE_TEST_CSB							: OUT STD_LOGIC; 
 		FE_TEST_CSC							: OUT STD_LOGIC; 
+
+		FE_CMN_CSA							: OUT STD_LOGIC; 		
+		FE_CMN_CSB							: OUT STD_LOGIC; 
+		FE_CMN_CSC							: OUT STD_LOGIC; 
+		FE_CMN_INH							: OUT STD_LOGIC; 
 		
 		EXT_PULSE_CNTL						: OUT STD_LOGIC; 
 		
@@ -236,6 +241,23 @@ entity DUNE_DAT_FPGA is
 		ADC_TST_SEL 						: OUT STD_LOGIC_VECTOR(7 downto 0);
 		
 --		ADC_SRC_CS_P						: OUT STD_LOGIC_VECTOR(15 downto 0);
+		ADC_SRC_CS_P0					   : OUT STD_LOGIC;
+		ADC_SRC_CS_P1					   : OUT STD_LOGIC;
+		ADC_SRC_CS_P2					   : OUT STD_LOGIC;
+		ADC_SRC_CS_P3					   : OUT STD_LOGIC;
+--		ADC_SRC_CS_P4					   : OUT STD_LOGIC; --comment due to schemacits error
+		ADC_SRC_CS_P5					   : OUT STD_LOGIC;	 --comment due to schemacits error	
+--		ADC_SRC_CS_P6					   : OUT STD_LOGIC;		
+		ADC_SRC_CS_P7					   : OUT STD_LOGIC;		
+		
+		ADC_SRC_CS_P8					   : OUT STD_LOGIC;
+		ADC_SRC_CS_P9					   : OUT STD_LOGIC;
+		ADC_SRC_CS_PA					   : OUT STD_LOGIC;
+		ADC_SRC_CS_PB					   : OUT STD_LOGIC;
+		ADC_SRC_CS_PC					   : OUT STD_LOGIC;
+		ADC_SRC_CS_PD					   : OUT STD_LOGIC;		
+		ADC_SRC_CS_PE					   : OUT STD_LOGIC;		
+		ADC_SRC_CS_PF					   : OUT STD_LOGIC;				
 		
 		ADC_MonADC_CS						: OUT STD_LOGIC; 		
 		ADC_MonADC_SCK						: OUT STD_LOGIC; 
@@ -284,8 +306,8 @@ entity DUNE_DAT_FPGA is
 		
 
 	--MISC
-		MISC_U1_IO							: out STD_LOGIC_VECTOR(5 downto 0)
-	
+		--MISC_U1_IO							: out STD_LOGIC_VECTOR(5 downto 0)
+		MISC_U1_IO							: out STD_LOGIC_VECTOR(5 downto 3)	
 	
 	);
 
@@ -325,7 +347,7 @@ SIGNAL	CLK_50MHz 		:  STD_LOGIC;
 SIGNAL	CLK_25MHz 		:  STD_LOGIC;
 SIGNAL	CLK_12_5MHz   	:  STD_LOGIC;
 
-SIGNAL	SYS_RESET		:  STD_LOGIC;
+--SIGNAL	SYS_RESET		:  STD_LOGIC;
 SIGNAL	reset 			:  STD_LOGIC;
 SIGNAL	start				:  STD_LOGIC;
 
@@ -484,6 +506,16 @@ SIGNAL	reg58_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
 SIGNAL	reg59_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
 SIGNAL	reg60_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
 SIGNAL	reg61_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg62_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg63_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg64_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg65_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg66_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg67_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg68_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg69_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg70_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
+SIGNAL	reg71_p 			:  STD_LOGIC_VECTOR(7  DOWNTO 0);
 
 
 SIGNAL	I2C_SDA_c2w		:  STD_LOGIC;
@@ -549,12 +581,12 @@ FE_INS_PLS_CS <= TP_SOCKET_EN AND Test_pulse_buffer; --bitwise and
 
 ----- register map -------
 
-MISC_U1_IO(0) <= I2C_LVDS_SDA_W2C_P;
-MISC_U1_IO(1) <= FASTCOMMAND_IN_P;
-MISC_U1_IO(2) <= CLK_64MHZ_SYS_P;
-MISC_U1_IO(3) <= CLK_62_5MHz;
-MISC_U1_IO(4) <= CLK_100MHz;
-		
+--MISC_U1_IO(0) <= I2C_LVDS_SDA_W2C_P;
+--MISC_U1_IO(1) <= FASTCOMMAND_IN_P;
+--MISC_U1_IO(2) <= CLK_64MHZ_SYS_P;
+--MISC_U1_IO(3) <= CLK_62_5MHz;
+--MISC_U1_IO(4) <= CLK_100MHz;
+MISC_U1_IO	<= reg63_p(2 downto 0);
 			
 CD_sEL				<= reg1_p(0);
 CD1_PAD_RESET 		<= not reg1_p(4);
@@ -622,7 +654,7 @@ ADC_TEST_CSC 	<= reg27_p(2);
 FE_TEST_CSA	 	<= reg27_p(4);		
 FE_TEST_CSB	 	<= reg27_p(5); 
 FE_TEST_CSC	 	<= reg27_p(6);
-FE_TEST_INH	 	<= reg27_p(7);
+
 
 ADC_TEST_INH 	<= reg28_p;
 
@@ -638,6 +670,23 @@ ADC_TST_SEL <= reg33_p;
 
 --ADC_SRC_CS_P(7 downto 0) <= reg34_p;
 --ADC_SRC_CS_P(15 downto 8) <= reg35_p;
+ADC_SRC_CS_P0	<=reg34_p(0); --'1';
+ADC_SRC_CS_P1	<=reg34_p(1); --'1';
+ADC_SRC_CS_P2	<=reg34_p(2); --'1';
+ADC_SRC_CS_P3	<=reg34_p(3); --'1';
+--ADC_SRC_CS_P4	<=reg34_p(4); --'1'; --comment due to schematics error 
+ADC_SRC_CS_P5	<=reg34_p(5); --'1';--comment due to schematics error		
+--ADC_SRC_CS_P6	<=reg34_p(6); --'1';		
+ADC_SRC_CS_P7	<=reg34_p(7); --'1';		
+
+ADC_SRC_CS_P8	<=reg35_p(0); --'1';
+ADC_SRC_CS_P9	<=reg35_p(1); --'1';
+ADC_SRC_CS_PA	<=reg35_p(2); --'1';
+ADC_SRC_CS_PB	<=reg35_p(3); --'1';
+ADC_SRC_CS_PC	<=reg35_p(4); --'1';
+ADC_SRC_CS_PD	<=reg35_p(5); --'1';		
+ADC_SRC_CS_PE	<=reg35_p(6); --'1';		
+ADC_SRC_CS_PF	<=reg35_p(7); --'1';	
 
 ADC_P_TST_CSA 			<= reg36_p(0);
 ADC_P_TST_CSB 			<= reg36_p(1);
@@ -687,9 +736,14 @@ TP_SOCKET_EN			<= reg56_p;
 
 Test_PULSE_WIDTH     <= reg58_p & reg57_p;
 --TP_AMPL              <= reg56_p;
+TP_AMPL              <= x"00";
 TP_DLY               <= reg59_p;
 TP_PERIOD				<= reg61_p & reg60_p; 
 
+FE_CMN_CSA	 	<= reg62_p(0);		
+FE_CMN_CSB	 	<= reg62_p(1); 
+FE_CMN_CSC	 	<= reg62_p(2);
+FE_CMN_INH	 	<= reg62_p(3);
 
 
 ----------------------------------------------------
@@ -781,14 +835,14 @@ ADC_MonADC_data  	<= ADC_MonADC_data_arr(0) when SOCKET_RDOUT_SEL = b"000" else
 							(others => '0');
 							
 							
-FE_DAC_TP_data_arr(0) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"000" else (others => '0');
-FE_DAC_TP_data_arr(1) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"001" else (others => '0');
-FE_DAC_TP_data_arr(2) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"010" else (others => '0');
-FE_DAC_TP_data_arr(3) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"011" else (others => '0');
-FE_DAC_TP_data_arr(4) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"100" else (others => '0');
-FE_DAC_TP_data_arr(5) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"101" else (others => '0');
-FE_DAC_TP_data_arr(6) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"110" else (others => '0');
-FE_DAC_TP_data_arr(7) <= FE_DAC_TP_data when SOCKET_RDOUT_SEL = b"111" else (others => '0');
+FE_DAC_TP_data_arr(0) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"000" else (others => '0');
+FE_DAC_TP_data_arr(1) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"001" else (others => '0');
+FE_DAC_TP_data_arr(2) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"010" else (others => '0');
+FE_DAC_TP_data_arr(3) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"011" else (others => '0');
+FE_DAC_TP_data_arr(4) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"100" else (others => '0');
+FE_DAC_TP_data_arr(5) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"101" else (others => '0');
+FE_DAC_TP_data_arr(6) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"110" else (others => '0');
+FE_DAC_TP_data_arr(7) <= FE_DAC_TP_data ;--when SOCKET_RDOUT_SEL = b"111" else (others => '0');
 							
 
 ro_cnt <= 	ro_cnt_arr(0) when SOCKET_RDOUT_SEL = b"000" else 
@@ -804,7 +858,7 @@ ro_cnt <= 	ro_cnt_arr(0) when SOCKET_RDOUT_SEL = b"000" else
 
 sys_rst_inst : entity work.sys_rst
 PORT MAP(	clk 			=> CLK_50MHz,
-				reset_in 	=> SYS_RESET,
+				reset_in 	=> '0' , --SYS_RESET,
 				start 		=> start,
 				RST_OUT 		=> reset);
 		
@@ -846,7 +900,7 @@ I2CSLAVE : entity work.I2CSLAVE
 
 	port MAP(
 		sys_clk			=> CLK_62_5MHz,
-		rst				=> SYS_RESET,
+		rst				=> reset,
 		FPGA_ADDRESS	=> '0',
 		I2C_BRD_ADDR	=> b"1100000",
 		SDA_IO_IN		=> I2C_LVDS_SDA_W2C_P ,
@@ -1023,6 +1077,8 @@ gen_FE_MonADC : for i in 7 downto 1 generate
 	);		
 end generate gen_FE_MonADC;
 
+
+--All 8 DACs are configurated at the same time with the same value actually. 
 FE1_DAC_TP_inst : entity work.DAC8411 --AD5683R
 	PORT MAP
 	(
@@ -1041,7 +1097,7 @@ gen_FE_DAC_TP : for i in 7 downto 1 generate
 		(
 			 clk         	=> CLK_25MHz,         
 			 reset			=> reset,	
-			 start			=> FE_DAC_TP_set(i),
+			 start			=> FE_DAC_TP_set(0),
 			 DATA				=> FE_DAC_TP_data_arr(i),
 			 SCLK				=> open,
 			 DIN				=> FE_DAC_TP_DIN(i),
@@ -1115,16 +1171,6 @@ TST_PULSE_GEN_inst : entity work.SBND_TST_PULSE
 		Test_pulse			=> Test_pulse
 	);
 
-
-		
-		
-		
-		
-
-	
-	
-	
-	
 DUNE_DAT_Registers_inst :  entity work.DUNE_DAT_Registers
 	PORT MAP
 	(
@@ -1204,6 +1250,16 @@ DUNE_DAT_Registers_inst :  entity work.DUNE_DAT_Registers
 		reg59_i 	=> reg59_p,	
 		reg60_i 	=> reg60_p,	
 		reg61_i 	=> reg61_p,
+		reg62_i 	=> reg62_p,
+		reg63_i 	=> reg63_p,
+		reg64_i 	=> reg64_p,
+		reg65_i 	=> reg65_p,	
+		reg66_i 	=> reg66_p,
+		reg67_i 	=> reg67_p,
+		reg68_i 	=> reg68_p,
+		reg69_i 	=> reg69_p,	
+		reg70_i 	=> reg70_p,	
+		reg71_i 	=> reg71_p,
 
 		
 		reg0_o 	=> reg0_p,
@@ -1267,7 +1323,17 @@ DUNE_DAT_Registers_inst :  entity work.DUNE_DAT_Registers
 		reg58_o 	=> reg58_p,
 		reg59_o 	=> reg59_p,
 		reg60_o 	=> reg60_p,
-		reg61_o 	=> reg61_p
+		reg61_o 	=> reg61_p,
+		reg62_o 	=> reg62_p, 
+		reg63_o 	=> reg63_p,
+		reg64_o 	=> reg64_p,
+		reg65_o 	=> reg65_p,
+		reg66_o 	=> reg66_p,
+		reg67_o 	=> reg67_p,
+		reg68_o 	=> reg68_p,
+		reg69_o 	=> reg69_p,
+		reg70_o 	=> reg70_p,
+		reg71_o 	=> reg71_p
 
 		
 	);
