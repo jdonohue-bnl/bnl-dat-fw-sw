@@ -822,21 +822,21 @@ PORT MAP(	clk 			=> CLK_50MHz,
 DAT_PLL_inst : entity work.DAT_PLL 
 	PORT MAP (
 		inclk0	 => CLK_64MHZ_SYS_P,
-		c0	 => CLK_125MHz,
-		c1	 => CLK_100MHz,
-		c2	 => CLK_62_5MHz,
-		c3	 => CLK_50MHz,
-		c4	 => CLK_25MHz,
+		c0	 => CLK_100MHz,
+		c1	 => CLK_62_5MHz,
+		c2	 => CLK_50MHz,
+		c3	 => CLK_25MHz,
+		c4	 => CLK_12_5MHz,
 		locked	 => open
 	);
 
 	
-DAT_PLL2_inst : entity work.DAT_PLL2 
-	PORT MAP (
-		inclk0	 => CLK_64MHZ_SYS_P,
-		c0	 => CLK_12_5MHz
-
-	);
+--DAT_PLL2_inst : entity work.DAT_PLL2 
+--	PORT MAP (
+--		inclk0	 => CLK_64MHZ_SYS_P,
+--		c0	 => CLK_12_5MHz
+--
+--	);
 
 	
 
@@ -1111,7 +1111,7 @@ TST_PULSE_GEN_inst : entity work.SBND_TST_PULSE
 		TP_DLY				=>	x"00" & TP_DLY,
 		TP_FREQ				=> TP_PERIOD,	 
 		DAC_CNTL				=> DAC_CNTL(11 DOWNTO 0), --not used
-		ASIC_DAC_CNTL		=> ASIC_DAC_CNTL,
+		ASIC_DAC_CNTL		=> ASIC_DAC_CNTL, --not used
 		Test_pulse			=> Test_pulse
 	);
 
