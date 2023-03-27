@@ -1,10 +1,7 @@
-*.txt
-*.zip
-*.pyc
-*.swp
-*.swo
-*.swn
-*.jpg
-*.bin
-*.png
-*.pdf
+/*
+/*/
+!/DUNE_DAT_FPGA_V2B/
+!/dat_sw/
+!/docs/
+!.gitignore
+!README.md
