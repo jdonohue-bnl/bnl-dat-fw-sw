@@ -420,6 +420,11 @@ signal	DAC_ADC_P_data			: std_logic_vector(15 downto 0);
 signal	DAC_ADC_N_data			: std_logic_vector(15 downto 0);
 signal	DAC_TP_data				: std_logic_vector(15 downto 0);
 
+signal 	DAC_ADC_ramp_delay	: std_logic_vector(7 downto 0);
+signal 	DAC_ADC_ramp_enable	: std_logic;
+signal	DAC_ADC_start			: std_logic;
+
+
 type		ro_cnt_array is array(7 downto 0) of STD_LOGIC_VECTOR(31 downto 0);
 signal	ro_cnt_arr				: ro_cnt_array;
 signal	ro_cnt					: STD_LOGIC_VECTOR(31 downto 0);
@@ -586,7 +591,6 @@ FE_INS_PLS_CS <= TP_SOCKET_EN AND Test_pulse_buffer; --bitwise and
 --MISC_U1_IO(2) <= CLK_64MHZ_SYS_P;
 --MISC_U1_IO(3) <= CLK_62_5MHz;
 --MISC_U1_IO(4) <= CLK_100MHz;
-MISC_U1_IO	<= reg63_p(2 downto 0);
 			
 CD_sEL				<= reg1_p(0);
 CD1_PAD_RESET 		<= not reg1_p(4);
@@ -709,11 +713,15 @@ FE_DAC_TP_data(15 downto 8) <= reg41_p;
 
 DAC_other_set <= reg42_p(2 downto 0);
 
-DAC_ADC_P_data(7 downto 0) <= reg43_p;
-DAC_ADC_P_data(15 downto 8) <= reg44_p;
+--DAC_ADC_P_data(7 downto 0) <= reg43_p;
+--DAC_ADC_P_data(15 downto 8) <= reg44_p;
+DAC_ADC_ramp_delay <= reg43_p;
+DAC_ADC_ramp_enable <= reg44_p(0);
+--DAC_ADC_ramp_reset <= reg44_p(1) or reset;
 
-DAC_ADC_N_data(7 downto 0) <= reg45_p;
-DAC_ADC_N_data(15 downto 8) <= reg46_p;
+--DAC_ADC_N_data(7 downto 0) <= reg45_p; 
+--DAC_ADC_N_data(15 downto 8) <= reg46_p; --now set to 0 in port map
+
 
 DAC_TP_data(7 downto 0) <= reg47_p;
 DAC_TP_data(15 downto 8) <= reg48_p;
@@ -744,6 +752,8 @@ FE_CMN_CSA	 	<= reg62_p(0);
 FE_CMN_CSB	 	<= reg62_p(1); 
 FE_CMN_CSC	 	<= reg62_p(2);
 FE_CMN_INH	 	<= reg62_p(3);
+
+MISC_U1_IO	<= reg63_p(2 downto 0);
 
 
 ----------------------------------------------------
@@ -1110,7 +1120,8 @@ DAC_ADC_P_inst : entity work.DAC8411 --AD5683R
 	(
 	 	 clk         	=> CLK_25MHz,         
 		 reset			=> reset,	
-		 start			=> DAC_other_set(0),
+--		 start			=> DAC_other_set(0),
+		 start			=> DAC_ADC_start,
 		 DATA				=> DAC_ADC_P_data,
 		 SCLK				=> DAC_ADC_P_SCK,
 		 DIN				=> DAC_ADC_P_DIN,
@@ -1122,8 +1133,9 @@ DAC_ADC_N_inst : entity work.DAC8411 --AD5683R
 	(
 	 	 clk         	=> CLK_25MHz,         
 		 reset			=> reset,	
-		 start			=> DAC_other_set(1),
-		 DATA				=> DAC_ADC_N_data,
+--		 start			=> DAC_other_set(1),
+		 start			=> DAC_ADC_start,
+		 DATA				=> x"0000",
 		 SCLK				=> DAC_ADC_N_SCK,
 		 DIN				=> DAC_ADC_N_DIN,
 		 SYNC				=> DAC_ADC_N_SYNC
@@ -1140,7 +1152,18 @@ DAC_TP_inst : entity work.DAC8411 --AD5683R
 		 DIN				=> DAC_TP_DIN,
 		 SYNC				=> DAC_TP_SYNC
 	);
-
+	
+DAC_ADC_P_ramp : entity work.DAC_ramp_gen
+	PORT MAP
+	(
+	 	 clk         	=> CLK_25MHz, 
+		 reset			=> reset,
+		 enable			=> DAC_ADC_ramp_enable,
+		 delay			=> DAC_ADC_ramp_delay,
+		 counter_out	=> DAC_ADC_P_data,
+		 start_out		=> DAC_ADC_start
+	);
+	
 gen_ro_cnt: for i in 7 downto 0 generate	
 	ro_inst: ENTITY WORK.COLDADC_RO_CNT 
 	  PORT MAP(

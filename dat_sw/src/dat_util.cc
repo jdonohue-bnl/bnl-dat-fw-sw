@@ -239,6 +239,24 @@ void dat_set_dac(float val, uint8_t fe, uint8_t adc, uint8_t fe_cal) {
 void dat_set_pulse(uint8_t en, uint16_t period, uint16_t width, float amplitude) {
 //en[0]=1 enables pulser for ASIC 0
 	
+	//program DACs with amplitude and turn them on (only those being used)
+	for(int i = 0; i < 8; i++) {
+		if (en & 1<<i > 0) dat_set_dac(amplitude, i, -1, -1);
+		else dat_set_dac(0.0, i, -1, -1);
+	}
+	
+	//connect FE_TEST to DAC
+	uint8_t adc_fe_test_sel = cdpeek(0, 0xC, 0, DAT_ADC_FE_TEST_SEL);
+	cdpoke(0, 0xC, 0, DAT_ADC_FE_TEST_SEL, (adc_fe_test_sel & 0xF) | (0x2 << 4));
+	
+	//connect FE_TEST to PLS_FE for enabled DACs
+	uint8_t fe_cali_cs = cdpeek(0, 0xC, 0, DAT_FE_CALI_CS);
+	cdpoke(0, 0xC, 0, DAT_FE_CALI_CS, en);	
+	
+	cdpoke(0, 0xC, 0, DAT_FE_IN_TST_SEL_MSB, 0x0);
+	cdpoke(0, 0xC, 0, DAT_FE_IN_TST_SEL_LSB, 0x0);
+
+	
 	//program in period & width 
 	cdpoke(0, 0xC, 0, DAT_TEST_PULSE_PERIOD_LSB, period&0xFF);
 	cdpoke(0, 0xC, 0, DAT_TEST_PULSE_PERIOD_MSB, (period&0xFF00)>>8);	
@@ -248,14 +266,7 @@ void dat_set_pulse(uint8_t en, uint16_t period, uint16_t width, float amplitude)
 
 	cdpoke(0, 0xC, 0, DAT_TEST_PULSE_DELAY, 0x0); //delay not relevant if you're not using ASIC_DAC_CNTL
 	
-	//program DACs with amplitude and turn them on (only those being used)
-	for(int i = 0; i < 8; i++) {
-		if (en & 1<<i > 0) dat_set_dac(amplitude, i, -1, -1);
-		else dat_set_dac(0.0, i, -1, -1);
-	}
-	//connect FE_TEST to PLS_FE for en
-	uint8_t fe_cali_cs = cdpeek(0, 0xC, 0, DAT_FE_CALI_CS);
-	cdpoke(0, 0xC, 0, DAT_FE_CALI_CS, fe_cali_cs & en);
+
 
 	//finally enable pulses
 	cdpoke(0, 0xC, 0, DAT_TEST_PULSE_SOCKET_EN, en);

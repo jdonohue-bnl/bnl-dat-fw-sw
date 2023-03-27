@@ -62,7 +62,7 @@ for femb_id in fembs:
 #step 3
     chk.femb_cfg(femb_id, adac_pls_en )
 
-chk.wib.dat_set_pulse(0x7, 0x2e4, 0x50, 1.0)
+chk.wib.dat_set_pulse(0xff, 0x2e4, 0x50, 1.0)
 
 chk.data_align(fembs)
 
