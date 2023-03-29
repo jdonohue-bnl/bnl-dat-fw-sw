@@ -210,11 +210,17 @@ void dat_set_dac(float val, uint8_t fe, uint8_t adc, uint8_t fe_cal) {
 		
 		cdpoke(0, 0xC, 0, DAT_SOCKET_SEL, fe);
 	} else if (adc == 0) { //ADC_P
-		msb_reg = DAT_DAC_ADC_P_DATA_MSB;
-		lsb_reg = DAT_DAC_ADC_P_DATA_LSB;
+		printf("Direct setting of ADC_P currently disabled.");
+		return;
+		
+		//msb_reg = DAT_DAC_ADC_P_DATA_MSB;
+		//lsb_reg = DAT_DAC_ADC_P_DATA_LSB;
 		set_reg = DAT_DAC_OTHER_SET;
 		set_val = set_val << 0;
 	} else if (adc == 1) { //ADC_N
+		printf("Direct setting of ADC_N currently disabled.");
+		return;
+	
 		msb_reg = DAT_DAC_ADC_N_DATA_MSB;
 		lsb_reg = DAT_DAC_ADC_N_DATA_LSB;
 		set_reg = DAT_DAC_OTHER_SET;

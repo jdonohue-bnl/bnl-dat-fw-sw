@@ -46,7 +46,7 @@ begin
 	if(reset = '1') then 
   
 		state <= IDLE;
-		counter_out <= x"0000";
+		adc_counter <= x"0000";
 		start_out <= '0';
 		delay_counter <= x"00";
 		--should I set DACs to 0??

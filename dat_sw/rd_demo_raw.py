@@ -87,6 +87,7 @@ if True:
                 #else:
                 plt.plot(x, wibs[fembi][i],color = 'C%d'%chip )
         #plt.xlim((0,200))
+        #plt.ylim((14375,15050))
         plt.title(f"Waveform of FEMB{fembi}")
         #plt.legend()
         ##plt.show()

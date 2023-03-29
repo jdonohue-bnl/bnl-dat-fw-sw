@@ -45,8 +45,8 @@ extern "C" {
 	extern constexpr uint8_t DAT_FE_IN_TST_SEL_MSB			= 31;
 	extern constexpr uint8_t DAT_FE_CALI_CS					= 32;
 	extern constexpr uint8_t DAT_ADC_TST_SEL				= 33;
-	extern constexpr uint8_t DAT_ADC_SRC_CS_P_LSB			= 34; //currently not implemented in fw
-	extern constexpr uint8_t DAT_ADC_SRC_CS_P_MSB			= 35; // ^
+	extern constexpr uint8_t DAT_ADC_SRC_CS_P_LSB			= 34; 
+	extern constexpr uint8_t DAT_ADC_SRC_CS_P_MSB			= 35; 
 	extern constexpr uint8_t DAT_ADC_PN_TST_SEL				= 36;
 	extern constexpr uint8_t DAT_ADC_TEST_IN_SEL			= 37;
 	extern constexpr uint8_t DAT_EXT_PULSE_CNTL				= 38;
@@ -55,12 +55,14 @@ extern "C" {
 	extern constexpr uint8_t DAT_FE_DAC_TP_SET				= 39; //writing 0x1<<X triggers DAC[X] (0 to 7)
 	extern constexpr uint8_t DAT_FE_DAC_TP_DATA_LSB			= 40; 
 	extern constexpr uint8_t DAT_FE_DAC_TP_DATA_MSB			= 41;
-	extern constexpr uint8_t DAT_DAC_OTHER_SET				= 42; //0x1 triggers DAC_ADC_P, 0x2 (0x1<<1) triggers DAC_ADC_N,
-																  //0x4 (0x1<<2) triggers DAC_TP
-	extern constexpr uint8_t DAT_DAC_ADC_P_DATA_LSB			= 43;	
-	extern constexpr uint8_t DAT_DAC_ADC_P_DATA_MSB			= 44;
-	extern constexpr uint8_t DAT_DAC_ADC_N_DATA_LSB			= 45;	
-	extern constexpr uint8_t DAT_DAC_ADC_N_DATA_MSB			= 46;
+	extern constexpr uint8_t DAT_DAC_OTHER_SET				= 42; //0x4 (0x1<<2) triggers DAC_TP
+																  //
+	//extern constexpr uint8_t DAT_DAC_ADC_P_DATA_LSB			= 43;	
+	//extern constexpr uint8_t DAT_DAC_ADC_P_DATA_MSB			= 44;
+	extern constexpr uint8_t DAT_DAC_ADC_RAMP_DELAY			= 43;
+	extern constexpr uint8_t DAT_DAC_ADC_RAMP_EN			= 44;
+	extern constexpr uint8_t DAT_DAC_ADC_N_DATA_LSB			= 45; //currently unused	
+	extern constexpr uint8_t DAT_DAC_ADC_N_DATA_MSB			= 46; //currently unused
 	extern constexpr uint8_t DAT_DAC_TP_DATA_LSB			= 47;
 	extern constexpr uint8_t DAT_DAC_TP_DATA_MSB			= 48;
 	
@@ -82,6 +84,9 @@ extern "C" {
 	extern constexpr uint8_t DAT_TEST_PULSE_DELAY			= 59;
 	extern constexpr uint8_t DAT_TEST_PULSE_PERIOD_LSB		= 60; 	
 	extern constexpr uint8_t DAT_TEST_PULSE_PERIOD_MSB		= 61; 
+	
+	extern constexpr uint8_t DAT_FE_CMN_SEL					= 62;
+	extern constexpr uint8_t DAT_MISC_U1_IO					= 63; //lowest 3 bits
 	
 	
 /////INA226 Internal register map

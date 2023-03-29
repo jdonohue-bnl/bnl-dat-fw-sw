@@ -454,8 +454,8 @@ class LLC():
         self.DAT_FE_DAC_TP_DATA_LSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_FE_DAC_TP_DATA_LSB')
         self.DAT_FE_DAC_TP_DATA_MSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_FE_DAC_TP_DATA_MSB')
         self.DAT_DAC_OTHER_SET = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_OTHER_SET')
-        self.DAT_DAC_ADC_P_DATA_LSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_P_DATA_LSB')
-        self.DAT_DAC_ADC_P_DATA_MSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_P_DATA_MSB')
+        self.DAT_DAC_ADC_RAMP_DELAY = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_RAMP_DELAY')
+        self.DAT_DAC_ADC_RAMP_EN = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_RAMP_EN')
         self.DAT_DAC_ADC_N_DATA_LSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_N_DATA_LSB')
         self.DAT_DAC_ADC_N_DATA_MSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_ADC_N_DATA_MSB')
         self.DAT_DAC_TP_DATA_LSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_DAC_TP_DATA_LSB')
@@ -472,6 +472,9 @@ class LLC():
         self.DAT_TEST_PULSE_DELAY = ctypes.c_uint8.in_dll(self.wib, 'DAT_TEST_PULSE_DELAY')
         self.DAT_TEST_PULSE_PERIOD_LSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_TEST_PULSE_PERIOD_LSB')
         self.DAT_TEST_PULSE_PERIOD_MSB = ctypes.c_uint8.in_dll(self.wib, 'DAT_TEST_PULSE_PERIOD_MSB')
+        
+        self.DAT_FE_CMN_SEL = ctypes.c_uint8.in_dll(self.wib, 'DAT_FE_CMN_SEL')
+        self.DAT_MISC_U1_IO = ctypes.c_uint8.in_dll(self.wib, 'DAT_MISC_U1_IO')
         
         #INA226 registers
         self.DAT_INA226_CONFIG = ctypes.c_uint8.in_dll(self.wib, 'DAT_INA226_CONFIG')
