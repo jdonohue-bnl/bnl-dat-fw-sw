@@ -1,4 +1,3 @@
-
 # bnl-dat-fw-sw
 Working repository for DAT firmware and WIB SW that deals with the DAT. See [docs/](https://github.com/jdonohue-bnl/bnl-dat-fw-sw/tree/main/docs) for more detailed information.
 
@@ -36,4 +35,5 @@ A script created by me testing basic communication and control with the DAT. It 
  - Verifying that writing to COLDATA's CD_CONTROL registers changes COLDATA's CD_CONTROL output pins accordingly
  - Writing values to DACs (these values are verified with the monitoring ADCs)
  - Reading out all possible inputs to monitoring ADCs
- - Test pulse generation from the DAT
+ - Test pulse generation from the DAT FPGA
+ - Generating a DAC ramp and connecting it to the ColdADCs
