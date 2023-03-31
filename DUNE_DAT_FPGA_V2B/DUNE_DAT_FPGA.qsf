@@ -490,45 +490,26 @@ set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
 
 
 
+set_global_assignment -name VHDL_FILE SRC/DAT_PLL.vhd
+set_global_assignment -name VHDL_FILE SRC/DAC_ramp_gen.vhd
+set_global_assignment -name SDC_FILE DUNE_DAT.sdc
+set_global_assignment -name VHDL_FILE SRC/SBND_TST_PULSE.vhd
+set_global_assignment -name VHDL_FILE SRC/coldadc_ro_cnt.vhd
+set_global_assignment -name VHDL_FILE SRC/DAC8411.vhd
+set_global_assignment -name VHDL_FILE SRC/COTS_AD7274.vhd
+set_global_assignment -name VHDL_FILE SRC/I2c_master.vhd
+set_global_assignment -name VHDL_FILE SRC/Version_Reg.vhd
+set_global_assignment -name VHDL_FILE SRC/sys_rst.vhd
+set_global_assignment -name VHDL_FILE SRC/I2CSLAVE.vhd
+set_global_assignment -name VHDL_FILE SRC/DUNE_DAT_Registers.vhd
+set_global_assignment -name VHDL_FILE SRC/DUNE_DAT_FPGA.vhd
+set_global_assignment -name QIP_FILE SRC/DAT_PLL.qip
+set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
+set_global_assignment -name QIP_FILE DAT_PLL2.qip
+set_global_assignment -name VHDL_FILE SRC/DAC_ramp_gen_connecttest.vhd
 set_global_assignment -name SLD_NODE_CREATOR_ID 110 -section_id adc_dac_ramp
 set_global_assignment -name SLD_NODE_ENTITY_NAME sld_signaltap -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_clk -to "DAC_ramp_gen:DAC_ADC_P_ramp|clk" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334545" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[0] -to "DAC8411:DAC_ADC_N_inst|DAC_data[0]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[1] -to "DAC8411:DAC_ADC_N_inst|DAC_data[10]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[2] -to "DAC8411:DAC_ADC_N_inst|DAC_data[11]" -section_id adc_dac_ramp
@@ -671,14 +652,6 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[138
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[139] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[5]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[140] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[6]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[141] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[7]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[142] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[143] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s1" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[144] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s2" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[145] -to "DAC_ramp_gen:DAC_ADC_P_ramp|reset" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[146] -to "DAC_ramp_gen:DAC_ADC_P_ramp|start_out" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[147] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.IDLE" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[148] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.PROGRAM" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[149] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.WAITING" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[0] -to "DAC8411:DAC_ADC_N_inst|DAC_data[0]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[1] -to "DAC8411:DAC_ADC_N_inst|DAC_data[10]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[2] -to "DAC8411:DAC_ADC_N_inst|DAC_data[11]" -section_id adc_dac_ramp
@@ -821,83 +794,126 @@ set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[138] -
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[139] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[5]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[140] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[6]" -section_id adc_dac_ramp
 set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[141] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_counter[7]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[142] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[143] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s1" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[144] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s2" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[145] -to "DAC_ramp_gen:DAC_ADC_P_ramp|reset" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[146] -to "DAC_ramp_gen:DAC_ADC_P_ramp|start_out" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[147] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.IDLE" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[148] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.PROGRAM" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[149] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.WAITING" -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[150] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[0]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[151] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[1]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[152] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[2]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[153] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[3]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[154] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[4]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[155] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[5]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[156] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[6]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[157] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[7]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[158] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[0]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[159] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[1]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[160] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[2]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[161] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[3]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[162] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[4]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[163] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[5]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[164] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[6]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[165] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[7]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[150] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[0]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[151] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[1]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[152] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[2]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[153] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[3]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[154] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[4]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[155] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[5]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[156] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[6]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[157] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[7]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[158] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[0]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[159] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[1]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[160] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[2]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[161] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[3]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[162] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[4]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[163] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[5]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[164] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[6]" -section_id adc_dac_ramp
-set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[165] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[7]" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=166" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=166" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=166" -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id adc_dac_ramp
-set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=525" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_BLOCK_TYPE=AUTO" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_NODE_INFO=805334545" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_POWER_UP_TRIGGER=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_INVERSION_MASK_LENGTH=0" -section_id adc_dac_ramp
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SEGMENT_SIZE=8192" -section_id adc_dac_ramp
-set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ATTRIBUTE_MEM_MODE=OFF" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_FLOW_USE_GENERATED=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STATE_BITS=11" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_BUFFER_FULL_STOP=1" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_CURRENT_RESOURCE_WIDTH=1" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INCREMENTAL_ROUTING=1" -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[1] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[2] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[3] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[4] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[7] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[8] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[9] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[10] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[12] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[13] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[14] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[15] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[18] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[19] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[20] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
 set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[21] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[22] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[23] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[24] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[26] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[27] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[30] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL=1" -section_id adc_dac_ramp
 set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_SAMPLE_DEPTH=8192" -section_id adc_dac_ramp
-set_global_assignment -name VHDL_FILE SRC/DAT_PLL.vhd
-set_global_assignment -name VHDL_FILE SRC/DAC_ramp_gen.vhd
-set_global_assignment -name SDC_FILE DUNE_DAT.sdc
-set_global_assignment -name VHDL_FILE SRC/SBND_TST_PULSE.vhd
-set_global_assignment -name VHDL_FILE SRC/coldadc_ro_cnt.vhd
-set_global_assignment -name VHDL_FILE SRC/DAC8411.vhd
-set_global_assignment -name VHDL_FILE SRC/COTS_AD7274.vhd
-set_global_assignment -name VHDL_FILE SRC/I2c_master.vhd
-set_global_assignment -name VHDL_FILE SRC/Version_Reg.vhd
-set_global_assignment -name VHDL_FILE SRC/sys_rst.vhd
-set_global_assignment -name VHDL_FILE SRC/I2CSLAVE.vhd
-set_global_assignment -name VHDL_FILE SRC/DUNE_DAT_Registers.vhd
-set_global_assignment -name VHDL_FILE SRC/DUNE_DAT_FPGA.vhd
-set_global_assignment -name QIP_FILE SRC/DAT_PLL.qip
-set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
-set_global_assignment -name QIP_FILE DAT_PLL2.qip
-set_global_assignment -name VHDL_FILE SRC/DAC_ramp_gen_connecttest.vhd
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_IN_ENABLED=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_PIPELINE=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_RAM_PIPELINE=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_COUNTER_PIPELINE=0" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ADVANCED_TRIGGER_ENTITY=basic,1," -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_LEVEL_PIPELINE=1" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_ENABLE_ADVANCED_TRIGGER=0" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[142] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[143] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[144] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[145] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[146] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[147] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[148] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[149] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[7]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[150] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[151] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s1" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[152] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s2" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[153] -to "DAC_ramp_gen:DAC_ADC_P_ramp|reset" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[154] -to "DAC_ramp_gen:DAC_ADC_P_ramp|start_out" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[155] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.IDLE" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[156] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.PROGRAM" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[157] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.WAITING" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[158] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[159] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[160] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[161] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[162] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[163] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[164] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[165] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[7]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[166] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[167] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[168] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[169] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[170] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[171] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[172] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_trigger_in[173] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[7]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[142] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[143] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[144] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[145] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[146] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[147] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[148] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[149] -to "DAC_ramp_gen:DAC_ADC_P_ramp|delay_s[7]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[150] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[151] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s1" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[152] -to "DAC_ramp_gen:DAC_ADC_P_ramp|enable_s2" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[153] -to "DAC_ramp_gen:DAC_ADC_P_ramp|reset" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[154] -to "DAC_ramp_gen:DAC_ADC_P_ramp|start_out" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[155] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.IDLE" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[156] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.PROGRAM" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[157] -to "DAC_ramp_gen:DAC_ADC_P_ramp|state.WAITING" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[158] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[159] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[160] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[161] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[162] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[163] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[164] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[165] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg43_i[7]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[166] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[0]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[167] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[1]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[168] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[2]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[169] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[3]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[170] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[4]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[171] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[5]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[172] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[6]" -section_id adc_dac_ramp
+set_instance_assignment -name CONNECT_TO_SLD_NODE_ENTITY_PORT acq_data_in[173] -to "DUNE_DAT_Registers:DUNE_DAT_Registers_inst|reg44_i[7]" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_DATA_BITS=174" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_TRIGGER_BITS=174" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_STORAGE_QUALIFIER_BITS=174" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK=000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000" -section_id adc_dac_ramp
+set_global_assignment -name SLD_NODE_PARAMETER_ASSIGNMENT "SLD_INVERSION_MASK_LENGTH=549" -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[0] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[5] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[6] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[11] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[16] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[17] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[25] -to adc_dac_ramp|gnd -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[28] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[29] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
+set_instance_assignment -name POST_FIT_CONNECT_TO_SLD_NODE_ENTITY_PORT crc[31] -to adc_dac_ramp|vcc -section_id adc_dac_ramp
 set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

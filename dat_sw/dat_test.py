@@ -396,9 +396,9 @@ for select in [0,1,2,3,4,5,6,7]:
         data = dat_monadc_getdata(fe=fe)
         print("FE MonADC:",data*AD_LSB,"V\t",hex(data),"\t",format(data,'b').zfill(12))
 
-#dat_set_pulse(0xff, 0x2e4, 0x50, 1.0)
-##disable dat pulse
-dat_set_pulse(0x0, 0x2e4, 0x50, 1.0)
+dat_set_pulse(0xff, 0x2e4, 0x50, 1.0)
+##disable dat pulse:
+# dat_set_pulse(0x0, 0x2e4, 0x50, 1.0)
 
 # print("\nSetting FE DAC for TP")
 # for dac in range(8):
@@ -416,12 +416,11 @@ dat_set_pulse(0x0, 0x2e4, 0x50, 1.0)
     # ext = tp_en & 0x8 is 0x8
     # print("FPGA = %d, ASIC = %d, INT = %d, EXT = %d"%(fpga, asic, int_, ext))
     # input("Check signal tap, press enter to continue")
-tp_en = 0x7
-wib.cdpoke(0, 0xC, 0, chk.DAT_TEST_PULSE_EN, 0) #disabled
+
 
 #Configuring ADC ramp injection
 ##Set ADC_P_TST_CSABC to 3, set ADC_N_TST_CSABC to 3  [Set ADC_PN_TST_SEL to 3 | (3 << 4)]
-wib.cdpoke(0, 0xC, 0, chk.DAT_ADC_PN_TST_SEL, 3 | (3 << 4))
+wib.cdpoke(0, 0xC, 0, chk.DAT_ADC_PN_TST_SEL, 0x33)
 ##Set ADC_TEST_IN_SEL to 0
 wib.cdpoke(0, 0xC, 0, chk.DAT_ADC_TEST_IN_SEL, 0)
 ##Set ADC_SRC_CS_P to 0x0000 (ADC_SRC_CS_P_MSB, ADC_SRC_CS_P_LSB)
@@ -429,7 +428,7 @@ wib.cdpoke(0, 0xC, 0, chk.DAT_ADC_SRC_CS_P_LSB, 0x0)
 wib.cdpoke(0, 0xC, 0, chk.DAT_ADC_SRC_CS_P_MSB, 0x0)
 
 #testing DAC ramp gen 
-wib.cdpoke(0, 0xC, 0, chk.DAT_DAC_ADC_RAMP_DELAY, 0xFF) #delay
+wib.cdpoke(0, 0xC, 0, chk.DAT_DAC_ADC_RAMP_DELAY, 0x0) #delay
 wib.cdpoke(0, 0xC, 0, chk.DAT_DAC_ADC_RAMP_EN, 0) #disable
 wib.cdpoke(0, 0xC, 0, chk.DAT_DAC_ADC_RAMP_EN, 1) #enable
 

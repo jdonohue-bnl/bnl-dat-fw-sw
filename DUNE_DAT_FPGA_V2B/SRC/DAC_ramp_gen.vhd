@@ -24,9 +24,9 @@ signal state : state_t;
 --sync signals
 signal enable_s1, enable_s2 : std_logic;
 signal adc_counter : unsigned(15 downto 0);
-signal delay_s : std_logic_vector (7 downto 0);
+signal delay_s : unsigned(7 downto 0);
 signal delay_counter : unsigned(7 downto 0);
-constant dac_programming_delay : unsigned(7 downto 0) := x"1C";
+constant dac_programming_delay : unsigned(7 downto 0) := x"1B"; 
 
 begin
 
@@ -37,7 +37,10 @@ begin
 
 	enable_s1	<= enable;
 	enable_s2	<= enable_s1;
-	delay_s		<= delay;
+	delay_s		<= unsigned(delay) - 1;
+	if (unsigned(delay) = x"00") then --prevent 0 -> FF
+		delay_s <= x"00";
+	end if;
   end if;
 end process sync; 
 
@@ -79,7 +82,7 @@ begin
 				delay_counter <= delay_counter + 1;
 				
 			when WAITING =>
-				if (delay_counter >= unsigned(delay)) then --sync delay?
+				if (delay_counter >= delay_s) then 
 					delay_counter <= x"00";
 					if (enable_s2 = '1') then
 						adc_counter <= adc_counter + 1; 
