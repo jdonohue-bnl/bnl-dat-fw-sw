@@ -133,8 +133,8 @@ def deframe(words): #based on WIB-DAQ_Format_2021-12-01_daq_hdr.xlsx
 
 
 def spymemory_decode(buf, trigmode="SW", buf_end_addr = 0x0, trigger_rec_ticks=0x3f000):
-    num_words = int(len(buf) // 4)
-    words = list(struct.unpack_from("<%dI"%(num_words),buf))       
+    num_words = int(len(buf) // 4) #num bytes // 4
+    words = list(struct.unpack_from("<%dI"%(num_words),buf))  #< big endian, %d placeholder for num_words, I unsigned int (4 bytes = 32 bits) 
 
     if trigmode == "SW" :
         pass
@@ -146,8 +146,8 @@ def spymemory_decode(buf, trigmode="SW", buf_end_addr = 0x0, trigger_rec_ticks=0
         else:
             deoding_start_addr = spy_addr_word  - trigger_rec_ticks
 
-    buf2 = buf + buf
-    newbuf = buf[deoding_start_addr*4: deoding_start_addr*4 + trigger_rec_ticks*4]
+    #buf2 = buf + buf                                                                   #not used ?
+    #newbuf = buf[deoding_start_addr*4: deoding_start_addr*4 + trigger_rec_ticks*4]     #not used ?
 
     f_heads = []
     i = 0
@@ -180,7 +180,7 @@ def spymemory_decode(buf, trigmode="SW", buf_end_addr = 0x0, trigger_rec_ticks=0
 
     num_frams = num_words//PKT_LEN
     ordered_frames = []
-    words = words[0:num_frams*PKT_LEN]
+    words = words[0:num_frams*PKT_LEN] #remove any words from a cut-off frame
     for i in range(num_frams*(PKT_LEN-1)):
         if words[i] == SOF:
             f0 = words[i] == SOF

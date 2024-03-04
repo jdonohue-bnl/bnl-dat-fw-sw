@@ -217,7 +217,7 @@ class LLC():
         buf0 = True if 0 in fembs or 1 in fembs else False
         buf1 = True if 2 in fembs or 3 in fembs else False 
 
-        DAQ_SPY_SIZE = 0x00100000
+        DAQ_SPY_SIZE = 0x00100000 #1 MB
         buf = (ctypes.c_char*DAQ_SPY_SIZE)()
         #allocate memory in python
         buf0_bytes = bytearray(DAQ_SPY_SIZE)

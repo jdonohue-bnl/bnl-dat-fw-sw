@@ -170,28 +170,28 @@ BEGIN
 	altpll_component : altpll
 	GENERIC MAP (
 		bandwidth_type => "AUTO",
-		clk0_divide_by => 16,
+		clk0_divide_by => 5,
 		clk0_duty_cycle => 50,
-		clk0_multiply_by => 25,
+		clk0_multiply_by => 8,
 		clk0_phase_shift => "0",
-		clk1_divide_by => 128,
+		clk1_divide_by => 1,
 		clk1_duty_cycle => 50,
-		clk1_multiply_by => 125,
+		clk1_multiply_by => 1,
 		clk1_phase_shift => "0",
-		clk2_divide_by => 32,
+		clk2_divide_by => 5,
 		clk2_duty_cycle => 50,
-		clk2_multiply_by => 25,
+		clk2_multiply_by => 4,
 		clk2_phase_shift => "0",
-		clk3_divide_by => 64,
+		clk3_divide_by => 5,
 		clk3_duty_cycle => 50,
-		clk3_multiply_by => 25,
+		clk3_multiply_by => 2,
 		clk3_phase_shift => "0",
-		clk4_divide_by => 128,
+		clk4_divide_by => 5,
 		clk4_duty_cycle => 50,
-		clk4_multiply_by => 25,
+		clk4_multiply_by => 1,
 		clk4_phase_shift => "0",
 		compensate_clock => "CLK0",
-		inclk0_input_frequency => 15625,
+		inclk0_input_frequency => 16000,
 		intended_device_family => "Cyclone IV GX",
 		lpm_hint => "CBX_MODULE_PREFIX=DAT_PLL",
 		lpm_type => "altpll",
@@ -292,7 +292,7 @@ END SYN;
 -- Retrieval info: PRIVATE: GLOCKED_MODE_CHECK STRING "0"
 -- Retrieval info: PRIVATE: GLOCK_COUNTER_EDIT NUMERIC "1048575"
 -- Retrieval info: PRIVATE: HAS_MANUAL_SWITCHOVER STRING "1"
--- Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "64.000"
+-- Retrieval info: PRIVATE: INCLK0_FREQ_EDIT STRING "62.500"
 -- Retrieval info: PRIVATE: INCLK0_FREQ_UNIT_COMBO STRING "MHz"
 -- Retrieval info: PRIVATE: INCLK1_FREQ_EDIT STRING "100.000"
 -- Retrieval info: PRIVATE: INCLK1_FREQ_EDIT_CHANGED STRING "1"
@@ -392,28 +392,28 @@ END SYN;
 -- Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
--- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "16"
+-- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "5"
 -- Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "25"
+-- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "8"
 -- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "128"
+-- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "1"
 -- Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "125"
+-- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "1"
 -- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK2_DIVIDE_BY NUMERIC "32"
+-- Retrieval info: CONSTANT: CLK2_DIVIDE_BY NUMERIC "5"
 -- Retrieval info: CONSTANT: CLK2_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "25"
+-- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "4"
 -- Retrieval info: CONSTANT: CLK2_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK3_DIVIDE_BY NUMERIC "64"
+-- Retrieval info: CONSTANT: CLK3_DIVIDE_BY NUMERIC "5"
 -- Retrieval info: CONSTANT: CLK3_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK3_MULTIPLY_BY NUMERIC "25"
+-- Retrieval info: CONSTANT: CLK3_MULTIPLY_BY NUMERIC "2"
 -- Retrieval info: CONSTANT: CLK3_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK4_DIVIDE_BY NUMERIC "128"
+-- Retrieval info: CONSTANT: CLK4_DIVIDE_BY NUMERIC "5"
 -- Retrieval info: CONSTANT: CLK4_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK4_MULTIPLY_BY NUMERIC "25"
+-- Retrieval info: CONSTANT: CLK4_MULTIPLY_BY NUMERIC "1"
 -- Retrieval info: CONSTANT: CLK4_PHASE_SHIFT STRING "0"
 -- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
--- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "15625"
+-- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "16000"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV GX"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
 -- Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
