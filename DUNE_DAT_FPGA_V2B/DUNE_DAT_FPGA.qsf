@@ -176,10 +176,10 @@ set_location_assignment PIN_A12 -to ADC_TST_SEL[0]
 set_location_assignment PIN_A11 -to ADC_TST_SEL[1]
 set_location_assignment PIN_B11 -to ADC_TST_SEL[2]
 set_location_assignment PIN_C11 -to ADC_TST_SEL[3]
-#set_location_assignment PIN_C10 -to CD1_FPGA_CD_INA_SDA #SCL & SDA were swapped on DAT schematic (page 4)
-#set_location_assignment PIN_B10 -to CD1_FPGA_CD_INA_SCL
-set_location_assignment PIN_B10 -to CD1_FPGA_CD_INA_SDA
-set_location_assignment PIN_C10 -to CD1_FPGA_CD_INA_SCL
+set_location_assignment PIN_C10 -to CD1_FPGA_CD_INA_SDA
+set_location_assignment PIN_B10 -to CD1_FPGA_CD_INA_SCL
+#set_location_assignment PIN_B10 -to CD1_FPGA_CD_INA_SDA #assignments for DAT rev1
+#set_location_assignment PIN_C10 -to CD1_FPGA_CD_INA_SCL
 
 #DAT_FPGA_IO_CD2
 
@@ -235,10 +235,10 @@ set_location_assignment PIN_H23 -to ADC_TST_SEL[4]
 set_location_assignment PIN_H22 -to ADC_TST_SEL[5]
 set_location_assignment PIN_K24 -to ADC_TST_SEL[6]
 set_location_assignment PIN_J23 -to ADC_TST_SEL[7]
-#set_location_assignment PIN_L24 -to CD2_FPGA_CD_INA_SDA #SCL & SDA were swapped on DAT schematic (page 4)
-#set_location_assignment PIN_L23 -to CD2_FPGA_CD_INA_SCL
-set_location_assignment PIN_L23 -to CD2_FPGA_CD_INA_SDA
-set_location_assignment PIN_L24 -to CD2_FPGA_CD_INA_SCL
+set_location_assignment PIN_L24 -to CD2_FPGA_CD_INA_SDA
+set_location_assignment PIN_L23 -to CD2_FPGA_CD_INA_SCL
+#set_location_assignment PIN_L23 -to CD2_FPGA_CD_INA_SDA #assignments for DAT rev1
+#set_location_assignment PIN_L24 -to CD2_FPGA_CD_INA_SCL
 
 #DAT_FPGA_2.25V IO
 
@@ -321,9 +321,6 @@ set_location_assignment PIN_AA26 -to ADC_MonADC_SCK
 set_location_assignment PIN_AC11 -to ADC_MonADC_CS
 set_location_assignment PIN_K23 -to FE_MonADC_SCK
 set_location_assignment PIN_N24 -to FE_MonADC_CS
-#set_location_assignment PIN_P24 -to FE_TEST_CSA
-#set_location_assignment PIN_P23 -to FE_TEST_CSB
-#set_location_assignment PIN_N23 -to FE_TEST_CSC
 set_location_assignment PIN_A6 -to FE_TEST_CSA
 set_location_assignment PIN_A7 -to FE_TEST_CSB
 set_location_assignment PIN_A8 -to FE_TEST_CSC
@@ -333,13 +330,14 @@ set_location_assignment PIN_E1 -to DAC_TP_SCK
 set_location_assignment PIN_D1 -to DAC_TP_DIN
 set_location_assignment PIN_C1 -to ADC_TEST_IN_SEL
 
-#set_location_assignment PIN_P24 -to FE_CMN_CSA #--for next version DAT
-#set_location_assignment PIN_P23 -to FE_CMN_CSB #--for next version DAT
-#set_location_assignment PIN_N23 -to FE_CMN_CSC #--for next version DAT
-set_location_assignment PIN_AD3 -to FE_CMN_CSA
-set_location_assignment PIN_AE3 -to FE_CMN_CSB
-set_location_assignment PIN_AC24 -to FE_CMN_CSC
+set_location_assignment PIN_P24 -to FE_CMN_CSA
+set_location_assignment PIN_P23 -to FE_CMN_CSB
+set_location_assignment PIN_N23 -to FE_CMN_CSC
 set_location_assignment PIN_K21 -to FE_CMN_INH
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to FE_CMN_CSA
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to FE_CMN_CSB
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to FE_CMN_CSC
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to FE_CMN_INH
 #DAT_FPGA_CLK
 
 #set_location_assignment PIN_U9 -to SBND_CLK_N
@@ -391,9 +389,9 @@ set_location_assignment PIN_M22 -to ADC_SRC_CS_P0
 set_location_assignment PIN_N19 -to ADC_SRC_CS_P1
 set_location_assignment PIN_Y26 -to ADC_SRC_CS_P2
 set_location_assignment PIN_AA21 -to ADC_SRC_CS_P3
-#set_location_assignment PIN_N26 -to  ADC_SRC_CS_P4
+set_location_assignment PIN_AC9 -to ADC_SRC_CS_P4
 set_location_assignment PIN_AA25 -to ADC_SRC_CS_P5
-#set_location_assignment PIN_B14 -to  ADC_SRC_CS_P6
+set_location_assignment PIN_AC14 -to ADC_SRC_CS_P6
 set_location_assignment PIN_AB21 -to ADC_SRC_CS_P7
 set_location_assignment PIN_N20 -to ADC_SRC_CS_P8
 set_location_assignment PIN_Y21 -to ADC_SRC_CS_P9
@@ -407,9 +405,9 @@ set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P0
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P1
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P2
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P3
-#set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P4
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P4
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P5
-#set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P6
+set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P6
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P7
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P8
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_P9
@@ -419,6 +417,9 @@ set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_PC
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_PD
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_PE
 set_instance_assignment -name IO_MAXIMUM_TOGGLE_RATE "0 MHz" -to ADC_SRC_CS_PF
+
+set_location_assignment PIN_AD5 -to CD1_LOCK
+set_location_assignment PIN_AD6 -to CD2_LOCK
 
 #set_instance_assignment -name IO_STANDARD LVDS -to clk_OUT_LP
 #set_instance_assignment -name IO_STANDARD LVDS -to clk_IN_LP
@@ -513,5 +514,5 @@ set_global_assignment -name SIGNALTAP_FILE output_files/stp1.stp
 set_global_assignment -name QIP_FILE DAT_PLL2.qip
 set_global_assignment -name VHDL_FILE SRC/DAC_ramp_gen_connecttest.vhd
 set_global_assignment -name QIP_FILE DAT_OSC_PLL.qip
-set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top
+set_global_assignment -name SLD_FILE db/stp1_auto_stripped.stp

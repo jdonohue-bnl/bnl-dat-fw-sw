@@ -107,6 +107,9 @@ entity DUNE_DAT_FPGA is
 		CD2_AMON_CSC 						: OUT STD_LOGIC;
 		CD2_AMON_INH 						: OUT STD_LOGIC;
 		
+		CD1_LOCK								: IN STD_LOGIC;
+		CD2_LOCK								: IN STD_LOGIC;
+		
 		--work.ADC_LTC2314
 		CD1_MonADC_CS 						: OUT STD_LOGIC;
 		CD1_MonADC_SCK 						: OUT STD_LOGIC;
@@ -245,9 +248,9 @@ entity DUNE_DAT_FPGA is
 		ADC_SRC_CS_P1					   : OUT STD_LOGIC;
 		ADC_SRC_CS_P2					   : OUT STD_LOGIC;
 		ADC_SRC_CS_P3					   : OUT STD_LOGIC;
---		ADC_SRC_CS_P4					   : OUT STD_LOGIC; --comment due to schemacits error
-		ADC_SRC_CS_P5					   : OUT STD_LOGIC;	 --comment due to schemacits error	
---		ADC_SRC_CS_P6					   : OUT STD_LOGIC;		
+		ADC_SRC_CS_P4					   : OUT STD_LOGIC; 
+		ADC_SRC_CS_P5					   : OUT STD_LOGIC;	 	
+		ADC_SRC_CS_P6					   : OUT STD_LOGIC;		
 		ADC_SRC_CS_P7					   : OUT STD_LOGIC;		
 		
 		ADC_SRC_CS_P8					   : OUT STD_LOGIC;
@@ -601,8 +604,8 @@ CD_sEL				<= reg1_p(0);
 CD1_PAD_RESET 		<= not reg1_p(4);
 CD2_PAD_RESET 		<= not reg1_p(5);
 
-reg2_p <= b"000" & CD1_CONTROL;
-reg3_p <= b"000" & CD2_CONTROL;
+reg2_p <= b"00" & CD1_LOCK & CD1_CONTROL;
+reg3_p <= b"00" & CD2_LOCK & CD2_CONTROL;
 
 SOCKET_RDOUT_SEL <= reg4_p(2 downto 0);
 
@@ -683,9 +686,9 @@ ADC_SRC_CS_P0	<=reg34_p(0); --'1';
 ADC_SRC_CS_P1	<=reg34_p(1); --'1';
 ADC_SRC_CS_P2	<=reg34_p(2); --'1';
 ADC_SRC_CS_P3	<=reg34_p(3); --'1';
---ADC_SRC_CS_P4	<=reg34_p(4); --'1'; --comment due to schematics error 
-ADC_SRC_CS_P5	<=reg34_p(5); --'1';--comment due to schematics error		
---ADC_SRC_CS_P6	<=reg34_p(6); --'1';		
+ADC_SRC_CS_P4	<=reg34_p(4); --'1'; 
+ADC_SRC_CS_P5	<=reg34_p(5); --'1';	
+ADC_SRC_CS_P6	<=reg34_p(6); --'1';		
 ADC_SRC_CS_P7	<=reg34_p(7); --'1';		
 
 ADC_SRC_CS_P8	<=reg35_p(0); --'1';
